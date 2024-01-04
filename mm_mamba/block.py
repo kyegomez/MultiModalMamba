@@ -1,11 +1,12 @@
 from torch import nn, Tensor
-from zeta import MambaBlock, VisualExpert, MLP
+from zeta.nn import VisualExpert, MLP
+from zeta.nn.modules.simple_mamba import MambaBlock
 from zeta.structs import ViTransformerWrapper, Encoder
 
 
-class MultiModalMamba(nn.Module):
+class MultiModalMambaBlock(nn.Module):
     """
-    MultiModalMamba is a PyTorch module that combines text and image embeddings using a multimodal fusion approach.
+    MultiModalMambaBlock is a PyTorch module that combines text and image embeddings using a multimodal fusion approach.
 
     Args:
         dim (int): The dimension of the embeddings.
@@ -22,7 +23,7 @@ class MultiModalMamba(nn.Module):
     Examples:
     x = torch.randn(1, 16, 64)
     y = torch.randn(1, 3, 64, 64)
-    model = MultiModalMamba(
+    model = MultiModalMambaBlock(
         dim = 64,
         depth = 5,
         dropout = 0.1,
@@ -54,7 +55,7 @@ class MultiModalMamba(nn.Module):
         *args,
         **kwargs,
     ):
-        super(MultiModalMamba, self).__init__()
+        super(MultiModalMambaBlock, self).__init__()
         self.dim = dim
         self.depth = depth
         self.dropout = dropout
@@ -68,9 +69,7 @@ class MultiModalMamba(nn.Module):
 
         # Set up the Mamba block
         self.mamba = MambaBlock(
-            dim=dim,
-            depth=depth,
-            d_state=d_state,
+            dim=dim, depth=depth, d_state=d_state, *args, **kwargs
         )
 
         # Set up the ViT encoder
@@ -78,7 +77,9 @@ class MultiModalMamba(nn.Module):
             image_size=image_size,
             patch_size=patch_size,
             attn_layers=Encoder(
-                dim=encoder_dim, depth=encoder_depth, heads=encoder_heads
+                dim=encoder_dim,
+                depth=encoder_depth,
+                heads=encoder_heads,
             ),
         )
 
@@ -89,11 +90,13 @@ class MultiModalMamba(nn.Module):
         self.fusion_layer = VisualExpert(dim, dim * 2, dropout, heads)
 
         # MLP
-        self.mlp = MLP(dim, dim, expansion_factor=4, depth=1, norm=True)
+        self.mlp = MLP(
+            dim, dim, expansion_factor=4, depth=1, norm=True
+        )
 
     def forward(self, text: Tensor, img: Tensor) -> Tensor:
         """
-        Forward pass of the MultiModalMamba module.
+        Forward pass of the MultiModalMambaBlock module.
 
         Args:
             text (Tensor): The input text embeddings.

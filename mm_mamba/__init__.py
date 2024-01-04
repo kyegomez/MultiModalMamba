@@ -1,3 +1,3 @@
-from mm_mamba.main import MultiModalMamba
+from mm_mamba.block import MultiModalMambaBlock
 
-__all__ = ["MultiModalMamba"]
+__all__ = ["MultiModalMambaBlock"]

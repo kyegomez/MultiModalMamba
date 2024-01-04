@@ -13,14 +13,14 @@ A novel implementation of fusing ViT with Mamba into a fast, agile, and high per
 # Import the necessary libraries
 import torch 
 from torch import nn
-from mm_mamba import MultiModalMamba
+from mm_mamba import MultiModalMambaBlock
 
 # Create some random input tensors
 x = torch.randn(1, 16, 64)  # Tensor with shape (batch_size, sequence_length, feature_dim)
 y = torch.randn(1, 3, 64, 64)  # Tensor with shape (batch_size, num_channels, image_height, image_width)
 
-# Create an instance of the MultiModalMamba model
-model = MultiModalMamba(
+# Create an instance of the MultiModalMambaBlock model
+model = MultiModalMambaBlock(
     dim = 64,  # Dimension of the token embeddings
     depth = 5,  # Number of transformer layers
     dropout = 0.1,  # Dropout probability
