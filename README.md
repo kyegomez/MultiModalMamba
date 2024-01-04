@@ -5,7 +5,7 @@ A novel implementation of fusing ViT with Mamba into a fast, agile, and high per
 
 
 ## Install
-``
+`pip3 install mmm-zeta`
 
 
 ## Usage
