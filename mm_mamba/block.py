@@ -1,4 +1,4 @@
-import torch 
+import torch
 from torch import nn, Tensor
 from zeta.nn import VisualExpert, MLP
 from zeta.nn.modules.simple_mamba import MambaBlock
@@ -20,6 +20,7 @@ class MultiModalMambaBlock(nn.Module):
         encoder_dim (int): The dimension of the encoder embeddings.
         encoder_depth (int): The depth of the encoder.
         encoder_heads (int): The number of attention heads in the encoder.
+        fusion_method (str): The multimodal fusion method to use. Can be one of ["mlp", "concat", "add"].
 
     Examples:
     x = torch.randn(1, 16, 64)
@@ -110,16 +111,16 @@ class MultiModalMambaBlock(nn.Module):
         """
         # Encode the image, Returns the same shape as text
         encoded_img = self.encoder(img, return_embeddings=True)
-        
+
         if self.fusion_method == "mlp":
             fusion_layer = self.mlp(encoded_img)
             fused = fusion_layer + text
-            
+
         if self.fusion_method == "concat":
             fused = torch.concat([text, encoded_img], dim=1)
-        
+
         return self.mamba(fused)
 
     def check_fusion_method(self):
-        print(f"""[mlp] [visualexpert] [projection] [concat] [add] """)
+        print("""[mlp] [visualexpert] [projection] [concat] [add] """)
         print(f"""Current fusion method: {self.fusion_method}""")

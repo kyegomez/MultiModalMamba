@@ -66,7 +66,9 @@ def main():
 
     threads = []
     for cls in classes:
-        thread = threading.Thread(target=process_documentation, args=(cls,))
+        thread = threading.Thread(
+            target=process_documentation, args=(cls,)
+        )
         threads.append(thread)
         thread.start()
 
@@ -74,7 +76,9 @@ def main():
     for thread in threads:
         thread.join()
 
-    print("Documentation generated in 'docs/zeta/nn/modules' directory.")
+    print(
+        "Documentation generated in 'docs/zeta/nn/modules' directory."
+    )
 
 
 if __name__ == "__main__":

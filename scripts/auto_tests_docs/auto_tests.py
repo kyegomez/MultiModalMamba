@@ -64,7 +64,9 @@ def create_test(cls):
 
     # Process with OpenAI model (assuming the model's __call__ method takes this input and returns processed content)
     processed_content = model(
-        TEST_WRITER_SOP_PROMPT(input_content, "zeta", "zeta.nn.modules")
+        TEST_WRITER_SOP_PROMPT(
+            input_content, "zeta", "zeta.nn.modules"
+        )
     )
     processed_content = extract_code_from_markdown(processed_content)
 

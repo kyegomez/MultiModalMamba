@@ -1,4 +1,4 @@
-import torch 
+import torch
 from mm_mamba.model import MMM
 
 x = torch.randint(0, 10000, (1, 224))

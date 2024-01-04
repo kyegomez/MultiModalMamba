@@ -37,7 +37,9 @@ def process_documentation(item):
 
     # Process with OpenAI model
     processed_content = model(
-        TEST_WRITER_SOP_PROMPT(input_content, "zeta.utils", "zeta.utils")
+        TEST_WRITER_SOP_PROMPT(
+            input_content, "zeta.utils", "zeta.utils"
+        )
     )
     processed_content = extract_code_from_markdown(processed_content)
 
@@ -65,7 +67,9 @@ def main():
 
     threads = []
     for func in functions:
-        thread = threading.Thread(target=process_documentation, args=(func,))
+        thread = threading.Thread(
+            target=process_documentation, args=(func,)
+        )
         threads.append(thread)
         thread.start()
 

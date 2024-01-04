@@ -7,7 +7,7 @@ from mm_mamba.block import MultiModalMambaBlock
 class MMM(nn.Module):
     """
     MultiModalMamba model.
-    
+
     Args:
         vocab_size (int): Size of the vocabulary.
         dim (int): Dimension of the dense vectors.
@@ -22,9 +22,9 @@ class MMM(nn.Module):
         encoder_heads (int): Number of attention heads in the encoder.
         *args: Variable length argument list.
         **kwargs: Arbitrary keyword arguments.
-        
+
     Examples::
-    import torch 
+    import torch
     from mm_mamba.model import MMM
 
     x = torch.randint(0, 10000, (1, 224))
@@ -48,6 +48,7 @@ class MMM(nn.Module):
     print(out.shape)
 
     """
+
     def __init__(
         self,
         vocab_size: int,
@@ -76,10 +77,10 @@ class MMM(nn.Module):
         self.encoder_dim = encoder_dim
         self.encoder_depth = encoder_depth
         self.encoder_heads = encoder_heads
-        
+
         # Transforms integer indices to dense vectors of fixed size
         self.embedding = nn.Embedding(vocab_size, dim)
-        
+
         # MultiModalMambaBlock in a list
         self.layers = nn.ModuleList(
             [
@@ -99,44 +100,45 @@ class MMM(nn.Module):
                 )
             ]
         )
-        
+
         # Normalization layer
         self.rmsnorm = RMSNorm(dim)
         self.norm = nn.LayerNorm(dim)
-        
+
         # Linear layer
         self.lm_head = nn.Linear(dim, vocab_size, bias=False)
-        
+
         # Tie weights
         self.lm_head.weight = self.embedding.weight
-        
+
         # Projection for the img
         self.img_proj = nn.Linear(encoder_dim, dim)
 
     def forward(self, text: Tensor, img: Tensor) -> Tensor:
         """
         Forward pass of the MultiModalMamba model.
-        
+
         Args:
             text (Tensor): Input text tensor.
             img (Tensor): Input image tensor.
-        
+
         Returns:
             Tensor: Output logits.
         """
-        print(f"Image shape: {img.shape} and text shape: {text.shape}")
-        
+        print(
+            f"Image shape: {img.shape} and text shape: {text.shape}"
+        )
+
         x = self.embedding(text)
         print(f"Text shacpe: {x.shape}")
-        
+
         # Project the image
         # img = self.img_proj(img)
-        
+
         for layer in self.layers:
             x = layer(x, img) + x
-        
+
         x = self.norm(x)
         logits = self.lm_head(x)
-        
+
         return logits
-            

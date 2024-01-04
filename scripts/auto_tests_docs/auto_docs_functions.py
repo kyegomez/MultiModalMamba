@@ -28,7 +28,8 @@ def process_documentation(item):
         doc = inspect.getdoc(item)
         source = inspect.getsource(item)
         input_content = (
-            f"Name: {item.__name__}\n\nDocumentation:\n{doc}\n\nSource"
+            "Name:"
+            f" {item.__name__}\n\nDocumentation:\n{doc}\n\nSource"
             f" Code:\n{source}"
         )
 
@@ -44,7 +45,9 @@ def process_documentation(item):
         os.makedirs(dir_path, exist_ok=True)
 
         # Write the processed documentation to a Markdown file
-        file_path = os.path.join(dir_path, f"{item.__name__.lower()}.md")
+        file_path = os.path.join(
+            dir_path, f"{item.__name__.lower()}.md"
+        )
         with open(file_path, "w") as file:
             file.write(doc_content)
 
@@ -63,7 +66,9 @@ def main():
 
     threads = []
     for func in functions:
-        thread = threading.Thread(target=process_documentation, args=(func,))
+        thread = threading.Thread(
+            target=process_documentation, args=(func,)
+        )
         threads.append(thread)
         thread.start()
 
