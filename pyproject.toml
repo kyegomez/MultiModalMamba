@@ -3,15 +3,15 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-name = "paper"
-version = "0.0.1"
-description = "Paper - Pytorch"
+name = "mmm"
+version = "0.0.2"
+description = "MMM - Pytorch"
 license = "MIT"
 authors = ["Kye Gomez <kye@apac.ai>"]
-homepage = "https://github.com/kyegomez/paper"
-documentation = "https://github.com/kyegomez/paper"  # Add this if you have documentation.
+homepage = "https://github.com/kyegomez/MultiModalMamba"
+documentation = "https://github.com/kyegomez/MultiModalMamba"  # Add this if you have documentation.
 readme = "README.md"  # Assuming you have a README.md
-repository = "https://github.com/kyegomez/paper"
+repository = "https://github.com/kyegomez/MultiModalMamba"
 keywords = ["artificial intelligence", "deep learning", "optimizers", "Prompt Engineering"]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -24,6 +24,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.6"
 swarms = "*"
+torch = "*"
 zetascale = "*"
 
 [tool.poetry.dev-dependencies]
