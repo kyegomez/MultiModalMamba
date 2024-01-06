@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "mmm-zeta"
-version = "0.0.6"
+version = "0.0.7"
 description = "MMM - Pytorch"
 license = "MIT"
 authors = ["Kye Gomez <kye@apac.ai>"]
@@ -27,9 +27,9 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.6"
-swarms = "*"
 torch = "2.1.2"
 zetascale = "1.4.0"
+
 
 
 [tool.poetry.group.lint.dependencies]
