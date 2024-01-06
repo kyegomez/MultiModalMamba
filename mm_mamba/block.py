@@ -55,6 +55,7 @@ class MultiModalMambaBlock(nn.Module):
         encoder_depth: int,
         encoder_heads: int,
         fusion_method: str = "mlp",
+        expansion_rate: int = 2,
         *args,
         **kwargs,
     ):
@@ -70,6 +71,9 @@ class MultiModalMambaBlock(nn.Module):
         self.encoder_depth = encoder_depth
         self.encoder_heads = encoder_heads
         self.fusion_method = fusion_method
+        
+        # Hidden dim
+        self.hidden_dim = dim * expansion_rate
 
         # Set up the Mamba block
         self.mamba = MambaBlock(
@@ -91,7 +95,7 @@ class MultiModalMambaBlock(nn.Module):
         self.linear = nn.Linear(encoder_dim, dim)
 
         # VisualExpert
-        self.fusion_layer = VisualExpert(dim, dim * 2, dropout, heads)
+        self.visual_expert = VisualExpert(dim, self.hidden_dim, dropout, heads)
 
         # MLP
         self.mlp = MLP(
@@ -111,13 +115,25 @@ class MultiModalMambaBlock(nn.Module):
         """
         # Encode the image, Returns the same shape as text
         encoded_img = self.encoder(img, return_embeddings=True)
+        # print(f"Image shape: {encoded_img.shape} inside the MultiModalMambaBlock")
+        # Project the image embeddings to the same dimension as the text embeddings
+        # We need to project the 2nd dim of the image embeddings to the same dimension as the text embeddings
 
+        # if the fusion method is mlp, use the mlp to fuse the text and image embeddings
         if self.fusion_method == "mlp":
             fusion_layer = self.mlp(encoded_img)
             fused = fusion_layer + text
 
+        # If fusion method is concat, concatenate the text and image embeddings
         if self.fusion_method == "concat":
             fused = torch.concat([text, encoded_img], dim=1)
+            
+        if self.fusion_method == "add":
+            fused = encoded_img + text
+        
+        if self.fusion_method == "visual_expert":
+            concat = torch.cat([text, encoded_img], dim=1)
+            fused = self.visual_expert(concat)
 
         return self.mamba(fused)
 

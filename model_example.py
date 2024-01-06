@@ -16,6 +16,7 @@ model = MMM(
     encoder_dim=512,
     encoder_depth=6,
     encoder_heads=8,
+    fusion_method="visual_expert",
 )
 
 out = model(x, img)

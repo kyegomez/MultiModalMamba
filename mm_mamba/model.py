@@ -62,6 +62,7 @@ class MMM(nn.Module):
         encoder_dim: int,
         encoder_depth: int,
         encoder_heads: int,
+        fusion_method: str = "mlp",
         *args,
         **kwargs,
     ):
@@ -95,6 +96,7 @@ class MMM(nn.Module):
                     encoder_dim,
                     encoder_depth,
                     encoder_heads,
+                    fusion_method,
                     *args,
                     **kwargs,
                 )
@@ -112,7 +114,7 @@ class MMM(nn.Module):
         self.lm_head.weight = self.embedding.weight
 
         # Projection for the img
-        self.img_proj = nn.Linear(encoder_dim, dim)
+        self.img_proj = nn.Linear(dim, dim)
 
     def forward(self, text: Tensor, img: Tensor) -> Tensor:
         """
@@ -125,18 +127,11 @@ class MMM(nn.Module):
         Returns:
             Tensor: Output logits.
         """
-        print(
-            f"Image shape: {img.shape} and text shape: {text.shape}"
-        )
-
         x = self.embedding(text)
-        print(f"Text shacpe: {x.shape}")
-
-        # Project the image
-        # img = self.img_proj(img)
 
         for layer in self.layers:
-            x = layer(x, img) + x
+            x = layer(x, img)  # + x
+            # x = x + x
 
         x = self.norm(x)
         logits = self.lm_head(x)
