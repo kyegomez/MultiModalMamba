@@ -36,7 +36,7 @@ model = MultiModalMambaBlock(
     patch_size = 16,  # Size of each image patch
     encoder_dim = 64,  # Dimension of the encoder token embeddings
     encoder_depth = 5,  # Number of encoder transformer layers
-    encoder_heads = 4  # Number of encoder attention heads
+    encoder_heads = 4,  # Number of encoder attention heads
     fusion_method="mlp",
 )
 
