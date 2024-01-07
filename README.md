@@ -37,6 +37,7 @@ model = MultiModalMambaBlock(
     encoder_dim = 64,  # Dimension of the encoder token embeddings
     encoder_depth = 5,  # Number of encoder transformer layers
     encoder_heads = 4  # Number of encoder attention heads
+    fusion_method="mlp",
 )
 
 # Pass the input tensors through the model
