@@ -14,11 +14,7 @@ This capability is particularly beneficial for tasks that involve substantial da
 ## Usage
 
 ### `MultiModalMambaBlock`
-- Versatility: The MMM model can handle both text and image data simultaneously, making it a versatile choice for multi-modal tasks. This can lead to better performance on tasks that require understanding of both text and image data.
 
-- Customizability: The MMM model has numerous parameters that can be tuned according to the specific requirements of the task at hand. This allows for a high degree of customization and can lead to improved model performance.
-
-- Efficiency: By processing text and image data together in a single model, the MMM model can potentially be more efficient than using separate models for text and image data. This can lead to faster training and inference times, as well as lower memory usage.
 
 ```python
 # Import the necessary libraries
