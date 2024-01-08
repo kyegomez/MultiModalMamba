@@ -88,6 +88,33 @@ out = model(x, img)
 print(out.shape)
 ```
 
+# Real-World Deployment
+---
+
+## :rocket: Supercharge Your AI Capabilities with Multi Modal Mamba
+
+Are you an enterprise looking to leverage the power of AI? Do you want to integrate state-of-the-art models into your workflow? Look no further!
+
+Multi Modal Mamba (MMM) is a cutting-edge AI model that fuses Vision Transformer (ViT) with Mamba, providing a fast, agile, and high-performance solution for your multi-modal needs. 
+
+But that's not all! With Zeta, our simple yet powerful AI framework, you can easily customize and fine-tune MMM to perfectly fit your unique quality standards. 
+
+Whether you're dealing with text, images, or both, MMM has got you covered. With its deep configuration and multiple fusion layers, you can handle complex AI tasks with ease and efficiency.
+
+### :star2: Why Choose Multi Modal Mamba?
+
+- **Versatile**: Handle both text and image data with a single model.
+- **Powerful**: Leverage the power of Vision Transformer and Mamba.
+- **Customizable**: Fine-tune the model to your specific needs with Zeta.
+- **Efficient**: Achieve high performance without compromising on speed.
+
+Don't let the complexities of AI slow you down. Choose Multi Modal Mamba and stay ahead of the curve!
+
+[Contact us here](https://calendly.com/swarm-corp/30min) today to learn how you can integrate Multi Modal Mamba into your workflow and supercharge your AI capabilities!
+
+---
+
+
 # License
 MIT
 
