@@ -1,8 +1,7 @@
 [![Multi-Modality](agorabanner.png)](https://discord.gg/qUtxnK2NMf)
 
 # Multi Modal Mamba - [MMM]
-A novel implementation of fusing ViT with Mamba into a fast, agile, and high performance Multi-Modal Model. Powered by Zeta, the simplest AI framework ever.
-
+Multi Modal Mamba (MMM) is an innovative AI model that integrates Vision Transformer (ViT) and Mamba, creating a high-performance multi-modal model. MMM is built on Zeta, a minimalist yet powerful AI framework, designed to streamline and enhance machine learning model management. In the dynamic field of AI, the capacity to process and interpret multiple data types concurrently is essential. MMM addresses this need by leveraging the capabilities of Vision Transformer and Mamba, enabling efficient handling of both text and image data. This makes MMM a versatile solution for a broad spectrum of AI tasks. MMM stands out for its significant speed and efficiency improvements over traditional transformer architectures, such as GPT-4 and LLAMA. This enhancement allows MMM to deliver high-quality results without sacrificing performance, making it an optimal choice for real-time data processing and complex AI algorithm execution. A key feature of MMM is its proficiency in processing long sequences. This capability is particularly beneficial for tasks that involve substantial data volumes or necessitate a comprehensive understanding of context, such as natural language processing or image recognition. With MMM, you're not just adopting a state-of-the-art AI model. You're integrating a fast, efficient, and robust tool that is equipped to meet the demands of contemporary AI tasks. Experience the power and versatility of Multi Modal Mamba today!
 
 ## Install
 `pip3 install mmm-zeta`
@@ -89,9 +88,6 @@ print(out.shape)
 ```
 
 # Real-World Deployment
----
-
-## :rocket: Supercharge Your AI Capabilities with Multi Modal Mamba
 
 Are you an enterprise looking to leverage the power of AI? Do you want to integrate state-of-the-art models into your workflow? Look no further!
 
