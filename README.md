@@ -14,11 +14,11 @@ This capability is particularly beneficial for tasks that involve substantial da
 ## Usage
 
 ### `MultiModalMambaBlock`
-- Versatility: The MMM model can handle both text and image data simultaneously, making it a versatile choice for multi-modal tasks. This can lead to better performance on tasks that require understanding of both text and image data.
+- Customizable Mamba: The MultiModalMambaBlock allows for customization of the Mamba model parameters such as dim, depth, dropout, heads, and d_state. This flexibility enables the model to be tailored to specific use cases and datasets, potentially improving performance.
 
-- Customizability: The MMM model has numerous parameters that can be tuned according to the specific requirements of the task at hand. This allows for a high degree of customization and can lead to improved model performance.
+- ViT for Image Embeddings: The MultiModalMambaBlock uses Vision Transformer (ViT) for processing image data. ViT divides an image into a sequence of patches and processes them as a sequence, similar to how a text transformer processes a sequence of tokens. This allows the MultiModalMambaBlock to handle image data in a way that is consistent with the transformer architecture.
 
-- Efficiency: By processing text and image data together in a single model, the MMM model can potentially be more efficient than using separate models for text and image data. This can lead to faster training and inference times, as well as lower memory usage.
+- Various Fusion Methods: The MultiModalMambaBlock supports various methods for fusing the image and text data, including mlp, concat, add, and visual_expert. This allows the model to be adapted to different tasks and requirements. For example, the add method might be suitable for tasks where the image and text data are closely related, while the concat method might be better for tasks where the image and text data provide complementary information.
 
 ```python
 # Import the necessary libraries
