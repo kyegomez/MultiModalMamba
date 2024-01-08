@@ -54,7 +54,7 @@ print(out.shape)
 ```
 
 
-### `MMM`, Ready to use Model
+### `MMM`, Ready to Train Model
 - Flexibility in Data Types: The MMM model can handle both text and image data simultaneously. This allows it to be trained on a wider variety of datasets and tasks, including those that require understanding of both text and image data.
 
 - Customizable Architecture: The MMM model has numerous parameters such as depth, dropout, heads, d_state, image_size, patch_size, encoder_dim, encoder_depth, encoder_heads, and fusion_method. These parameters can be tuned according to the specific requirements of the task at hand, allowing for a high degree of customization in the model architecture.
