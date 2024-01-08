@@ -63,6 +63,7 @@ class MMM(nn.Module):
         encoder_depth: int,
         encoder_heads: int,
         fusion_method: str = "mlp",
+        return_embeddings: bool = False,
         *args,
         **kwargs,
     ):
@@ -78,6 +79,8 @@ class MMM(nn.Module):
         self.encoder_dim = encoder_dim
         self.encoder_depth = encoder_depth
         self.encoder_heads = encoder_heads
+        self.fusion_method = fusion_method
+        self.return_embeddings = return_embeddings
 
         # Transforms integer indices to dense vectors of fixed size
         self.embedding = nn.Embedding(vocab_size, dim)
@@ -131,9 +134,11 @@ class MMM(nn.Module):
 
         for layer in self.layers:
             x = layer(x, img)  # + x
-            # x = x + x
 
-        x = self.norm(x)
-        logits = self.lm_head(x)
+        if self.return_embeddings:
+            return x
+        else:
+            x = self.norm(x)
+            logits = self.lm_head(x)
 
-        return logits
+            return logits

@@ -12,9 +12,11 @@ The capacity to process and interpret multiple data types concurrently is essent
 ## Usage
 
 ### `MultiModalMambaBlock`
-- Basic Block with 1 pass through the vit and Mamba
-- Multiple fusion layers
-- Deep configuration
+- Versatility: The MMM model can handle both text and image data simultaneously, making it a versatile choice for multi-modal tasks. This can lead to better performance on tasks that require understanding of both text and image data.
+
+- Customizability: The MMM model has numerous parameters that can be tuned according to the specific requirements of the task at hand. This allows for a high degree of customization and can lead to improved model performance.
+
+- Efficiency: By processing text and image data together in a single model, the MMM model can potentially be more efficient than using separate models for text and image data. This can lead to faster training and inference times, as well as lower memory usage.
 
 ```python
 # Import the necessary libraries
@@ -51,7 +53,11 @@ print(out.shape)
 
 
 ### `MMM`, Ready to use Model
-- MMM, Fully ready to train Multi-Modal Mamba Model
+- Flexibility in Data Types: The MMM model can handle both text and image data simultaneously. This allows it to be trained on a wider variety of datasets and tasks, including those that require understanding of both text and image data.
+
+- Customizable Architecture: The MMM model has numerous parameters such as depth, dropout, heads, d_state, image_size, patch_size, encoder_dim, encoder_depth, encoder_heads, and fusion_method. These parameters can be tuned according to the specific requirements of the task at hand, allowing for a high degree of customization in the model architecture.
+
+- Option to Return Embeddings: The MMM model has a return_embeddings option. When set to True, the model will return the embeddings instead of the final output. This can be useful for tasks that require access to the intermediate representations learned by the model, such as transfer learning or feature extraction tasks.
 
 ```python
 import torch  # Import the torch library
@@ -66,7 +72,6 @@ x = torch.randint(0, 10000, (1, 224))
 img = torch.randn(1, 3, 224, 224)
 
 # Create a MMM model object with the following parameters:
-# vocab_size=10000, dim=512, depth=6, dropout=0.1, heads=8, d_state=512, image_size=224, patch_size=16, encoder_dim=512, encoder_depth=6, encoder_heads=8, fusion_method="visual_expert"
 model = MMM(
     vocab_size=10000,
     dim=512,
@@ -79,7 +84,8 @@ model = MMM(
     encoder_dim=512,
     encoder_depth=6,
     encoder_heads=8,
-    fusion_method="visual_expert",
+    fusion_method="mlp",
+    return_embeddings=False,
 )
 
 # Pass the tensor 'x' and 'img' through the model and store the output in 'out'

@@ -71,7 +71,7 @@ class MultiModalMambaBlock(nn.Module):
         self.encoder_depth = encoder_depth
         self.encoder_heads = encoder_heads
         self.fusion_method = fusion_method
-        
+
         # Hidden dim
         self.hidden_dim = dim * expansion_rate
 
@@ -95,7 +95,9 @@ class MultiModalMambaBlock(nn.Module):
         self.linear = nn.Linear(encoder_dim, dim)
 
         # VisualExpert
-        self.visual_expert = VisualExpert(dim, self.hidden_dim, dropout, heads)
+        self.visual_expert = VisualExpert(
+            dim, self.hidden_dim, dropout, heads
+        )
 
         # MLP
         self.mlp = MLP(
@@ -127,10 +129,10 @@ class MultiModalMambaBlock(nn.Module):
         # If fusion method is concat, concatenate the text and image embeddings
         if self.fusion_method == "concat":
             fused = torch.concat([text, encoded_img], dim=1)
-            
+
         if self.fusion_method == "add":
             fused = encoded_img + text
-        
+
         if self.fusion_method == "visual_expert":
             concat = torch.cat([text, encoded_img], dim=1)
             fused = self.visual_expert(concat)
