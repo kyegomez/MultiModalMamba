@@ -67,8 +67,9 @@ import torch  # Import the torch library
 # Import the MMM model from the mm_mamba module
 from mm_mamba.model import MMM
 
-# Generate a random tensor 'x' of size (1, 224) with random elements between 0 and 10000
-x = torch.randint(0, 10000, (1, 224))
+# Generate a random tensor 'x' of size (1, 196) with random elements between 0 and 10000
+# 196 is (224//patchsize16)**2
+x = torch.randint(0, 10000, (1, 196))
 
 # Generate a random image tensor 'img' of size (1, 3, 224, 224)
 img = torch.randn(1, 3, 224, 224)
