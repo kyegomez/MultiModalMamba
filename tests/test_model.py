@@ -36,7 +36,7 @@ def test_mmm_initialization(mmm):
     assert mmm.encoder_depth == 6
     assert mmm.encoder_heads == 8
     assert mmm.fusion_method == "mlp"
-    assert mmm.return_embeddings == False
+    assert mmm.return_embeddings is False
 
 
 def test_mmm_forward(mmm):

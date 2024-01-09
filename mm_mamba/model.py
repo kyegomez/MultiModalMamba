@@ -1,7 +1,9 @@
+import torch
 from torch import Tensor, nn
 from zeta import RMSNorm
-
-from mm_mamba.block import MultiModalMambaBlock
+from zeta.nn import MLP, VisualExpert
+from zeta.nn.modules.simple_mamba import MambaBlock
+from zeta.structs import Encoder, ViTransformerWrapper
 
 
 class MMM(nn.Module):
@@ -20,6 +22,11 @@ class MMM(nn.Module):
         encoder_dim (int): Dimension of the encoder.
         encoder_depth (int): Number of layers in the encoder.
         encoder_heads (int): Number of attention heads in the encoder.
+        fusion_method (str): Fusion method to use. Defaults to "mlp", can be one of "mlp", "concat", "add", "visual_expert", "matmul", "mobilevlm", "CrossAttention".
+        return_embeddings (bool): Whether to return the embeddings or not. Defaults to False.
+        expansion_ratio (int): Expansion ratio for the hidden dimension. Defaults to 4.
+        post_fuse_norm (bool): Whether to apply layer normalization after the fusion or not. Defaults to True.
+        
         *args: Variable length argument list.
         **kwargs: Arbitrary keyword arguments.
 
@@ -64,6 +71,8 @@ class MMM(nn.Module):
         encoder_heads: int,
         fusion_method: str = "mlp",
         return_embeddings: bool = False,
+        expansion_ratio: int = 4,
+        post_fuse_norm: bool = True,
         *args,
         **kwargs,
     ):
@@ -81,6 +90,8 @@ class MMM(nn.Module):
         self.encoder_heads = encoder_heads
         self.fusion_method = fusion_method
         self.return_embeddings = return_embeddings
+        self.expansion_ratio = expansion_ratio
+        self.post_fuse_norm = post_fuse_norm
 
         # Transforms integer indices to dense vectors of fixed size
         self.embedding = nn.Embedding(vocab_size, dim)
@@ -88,18 +99,11 @@ class MMM(nn.Module):
         # MultiModalMambaBlock in a list
         self.layers = nn.ModuleList(
             [
-                MultiModalMambaBlock(
+                MambaBlock(
                     dim,
                     depth,
-                    dropout,
-                    heads,
                     d_state,
-                    image_size,
-                    patch_size,
-                    encoder_dim,
-                    encoder_depth,
-                    encoder_heads,
-                    fusion_method,
+                    expansion_ratio,
                     *args,
                     **kwargs,
                 )
@@ -119,6 +123,33 @@ class MMM(nn.Module):
         # Projection for the img
         self.img_proj = nn.Linear(dim, dim)
 
+        # Hidden dim
+        self.hidden_dim = dim * expansion_ratio
+
+        # Set up the ViT encoder
+        self.encoder = ViTransformerWrapper(
+            image_size=image_size,
+            patch_size=patch_size,
+            attn_layers=Encoder(
+                dim=encoder_dim,
+                depth=encoder_depth,
+                heads=encoder_heads,
+            ),
+        )
+
+        # Setup the linear layer to project the image embeddings to the same dimension as the text embeddings
+        self.linear = nn.Linear(encoder_dim, dim)
+
+        # VisualExpert
+        self.visual_expert = VisualExpert(
+            dim, self.hidden_dim, dropout, heads
+        )
+
+        # MLP
+        self.mlp = MLP(
+            dim, dim, expansion_factor=4, depth=1, norm=True
+        )
+
     def forward(self, text: Tensor, img: Tensor) -> Tensor:
         """
         Forward pass of the MultiModalMamba model.
@@ -131,9 +162,60 @@ class MMM(nn.Module):
             Tensor: Output logits.
         """
         x = self.embedding(text)
+        # print(f"Text shape: {x.shape} inside the MMM")
+
+        # Encode the image, Returns the same shape as text
+        encoded_img = self.encoder(img, return_embeddings=True)
+        # print(f"Image shape: {encoded_img.shape} inside the MMM")
+        # Project the image embeddings to the same dimension as the text embeddings
+        # We need to project the 2nd dim of the image embeddings to the same dimension as the text embeddings
+
+        # if the fusion method is mlp, use the mlp to fuse the text and image embeddings
+        if self.fusion_method == "mlp":
+            fusion_layer = self.mlp(encoded_img)
+            fused = fusion_layer + x
+
+            if self.post_fuse_norm:
+                fused = self.norm(fused)
+
+        # If fusion method is concat, concatenate the text and image embeddings
+        if self.fusion_method == "concat":
+            fused = torch.concat([x, encoded_img], dim=1)
+
+            if self.post_fuse_norm:
+                fused = self.norm(fused)
+
+        if self.fusion_method == "add":
+            fused = encoded_img + x
+
+            if self.post_fuse_norm:
+                fused = self.norm(fused)
+
+        if self.fusion_method == "visual_expert":
+            concat = torch.cat([x, encoded_img], dim=1)
+            fused = self.visual_expert(concat)
+
+            if self.post_fuse_norm:
+                fused = self.norm(fused)
+
+        if self.fusion_method == "matmul":
+            fused = torch.matmul(encoded_img, x)
+
+            if self.post_fuse_norm:
+                fused = self.norm(fused)
+
+        # Need to implement this
+        if self.fusion_method == "mobilevlm":
+            pass
+
+        # Need to implement this
+        if self.fusion_method == "CrossAttention":
+            pass
+
+        x = fused
 
         for layer in self.layers:
-            x = layer(x, img)  # + x
+            x = layer(x) + x
 
         if self.return_embeddings:
             return x
@@ -142,3 +224,4 @@ class MMM(nn.Module):
             logits = self.lm_head(x)
 
             return logits
+

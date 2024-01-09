@@ -1,7 +1,7 @@
 import torch  # Import the torch library
 
 # Import the MMM model from the mm_mamba module
-from mm_mamba.model import MMM
+from mm_mamba import MMM
 
 # Generate a random tensor 'x' of size (1, 224) with random elements between 0 and 10000
 x = torch.randint(0, 10000, (1, 196))
