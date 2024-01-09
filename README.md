@@ -96,6 +96,11 @@ print(out.shape)
 
 # After much training
 model.eval()
+
+# Tokenize texts
+text_tokens = tokenize(text)
+
+# Send text tokens to the model
 model(text_tokens)
 ```
 
