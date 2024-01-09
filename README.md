@@ -92,6 +92,11 @@ out = model(x, img)
 
 # Print the shape of the output tensor 'out'
 print(out.shape)
+
+
+# After much training
+model.eval()
+model(text_tokens)
 ```
 
 # Real-World Deployment
