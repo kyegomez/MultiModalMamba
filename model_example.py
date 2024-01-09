@@ -24,6 +24,7 @@ model = MMM(
     encoder_heads=8,
     fusion_method="mlp",
     return_embeddings=False,
+    post_fuse_norm=True,
 )
 
 # Pass the tensor 'x' and 'img' through the model and store the output in 'out'

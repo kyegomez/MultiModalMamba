@@ -61,10 +61,10 @@ print(out.shape)
 import torch  # Import the torch library
 
 # Import the MMM model from the mm_mamba module
-from mm_mamba.model import MMM
+from mm_mamba import MMM
 
 # Generate a random tensor 'x' of size (1, 224) with random elements between 0 and 10000
-x = torch.randint(0, 10000, (1, 224))
+x = torch.randint(0, 10000, (1, 196))
 
 # Generate a random image tensor 'img' of size (1, 3, 224, 224)
 img = torch.randn(1, 3, 224, 224)
@@ -84,6 +84,7 @@ model = MMM(
     encoder_heads=8,
     fusion_method="mlp",
     return_embeddings=False,
+    post_fuse_norm=True,
 )
 
 # Pass the tensor 'x' and 'img' through the model and store the output in 'out'
