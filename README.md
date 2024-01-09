@@ -101,7 +101,9 @@ model.eval()
 text_tokens = tokenize(text)
 
 # Send text tokens to the model
-model(text_tokens)
+logits = model(text_tokens)
+
+text = detokenize(logits)
 ```
 
 # Real-World Deployment
