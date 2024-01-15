@@ -1,11 +1,11 @@
 import torch
 import pytest
-from mm_mamba.model import MMM
+from mm_mamba.model import MultiModalMamba
 
 
 @pytest.fixture
 def mmm():
-    return MMM(
+    return MultiModalMamba(
         vocab_size=10000,
         dim=512,
         depth=6,
@@ -23,7 +23,7 @@ def mmm():
 
 
 def test_mmm_initialization(mmm):
-    assert isinstance(mmm, MMM)
+    assert isinstance(mmm, MultiModalMamba)
     assert mmm.vocab_size == 10000
     assert mmm.dim == 512
     assert mmm.depth == 6

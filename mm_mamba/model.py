@@ -1,12 +1,12 @@
 import torch
 from torch import Tensor, nn
-from zeta import RMSNorm
-from zeta.nn import MLP, VisualExpert
+from zeta import RMSNorm, exists
+from zeta.nn import MLP, VisualExpert, audio_to_text, video_to_text
 from zeta.nn.modules.simple_mamba import MambaBlock
 from zeta.structs import Encoder, ViTransformerWrapper
 
 
-class MMM(nn.Module):
+class MultiModalMamba(nn.Module):
     """
     MultiModalMamba model.
 
@@ -32,12 +32,12 @@ class MMM(nn.Module):
 
     Examples::
     import torch
-    from mm_mamba.model import MMM
+    from mm_mamba.model import MultiModalMamba
 
     x = torch.randint(0, 10000, (1, 224))
     img = torch.randn(1, 3, 224, 224)
 
-    model = MMM(
+    model = MultiModalMamba(
         vocab_size=10000,
         dim=512,
         depth=6,
@@ -76,7 +76,7 @@ class MMM(nn.Module):
         *args,
         **kwargs,
     ):
-        super(MMM, self).__init__()
+        super(MultiModalMamba, self).__init__()
         self.vocab_size = vocab_size
         self.dim = dim
         self.depth = depth
@@ -150,7 +150,13 @@ class MMM(nn.Module):
             dim, dim, expansion_factor=4, depth=1, norm=True
         )
 
-    def forward(self, text: Tensor, img: Tensor) -> Tensor:
+    def forward(
+        self,
+        text: Tensor,
+        img: Tensor,
+        audio: Tensor = None,
+        video: Tensor = None,
+    ) -> Tensor:
         """
         Forward pass of the MultiModalMamba model.
 
@@ -162,13 +168,26 @@ class MMM(nn.Module):
             Tensor: Output logits.
         """
         x = self.embedding(text)
-        # print(f"Text shape: {x.shape} inside the MMM")
+        text_b, text_s, text_d = x.shape
+
+        # print(f"Text shape: {x.shape} inside the MultiModalMamba")
+        # print(f"Text shape: {x.shape} inside the MultiModalMamba")
 
         # Encode the image, Returns the same shape as text
         encoded_img = self.encoder(img, return_embeddings=True)
-        # print(f"Image shape: {encoded_img.shape} inside the MMM")
+        # print(f"Image shape: {encoded_img.shape} inside the MultiModalMamba")
         # Project the image embeddings to the same dimension as the text embeddings
         # We need to project the 2nd dim of the image embeddings to the same dimension as the text embeddings
+
+        if exists(audio):
+            encoded_audio = audio_to_text(audio, text_s, self.dim)
+            # print(encoded_audio.shape)
+            x = x + encoded_audio
+
+        if exists(video):
+            encoded_video = video_to_text(video, text_s, self.dim)
+
+            x = x + encoded_video
 
         # if the fusion method is mlp, use the mlp to fuse the text and image embeddings
         if self.fusion_method == "mlp":
