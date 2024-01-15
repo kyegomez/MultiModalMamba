@@ -1,0 +1,125 @@
+{
+    "url": {
+        "full": "https://github.com/kyegomez/MultiModalMamba",
+        "partial": "kyegomez/MultiModalMamba"
+    },
+    "file_mapping": {
+        "0": {
+            "filepath": "/README.md",
+            "entry_id": 0,
+            "language_id": "markdown"
+        },
+        "1": {
+            "filepath": "/example.py",
+            "entry_id": 14,
+            "language_id": "python"
+        },
+        "2": {
+            "filepath": "/mm_mamba/__init__.py",
+            "entry_id": 20,
+            "language_id": "python"
+        },
+        "3": {
+            "filepath": "/mm_mamba/block.py",
+            "entry_id": 24,
+            "language_id": "python"
+        },
+        "4": {
+            "filepath": "/mm_mamba/model.py",
+            "entry_id": 36,
+            "language_id": "python"
+        },
+        "5": {
+            "filepath": "/model_example.py",
+            "entry_id": 52,
+            "language_id": "python"
+        },
+        "6": {
+            "filepath": "/pyproject.toml",
+            "entry_id": 56,
+            "language_id": "toml"
+        },
+        "7": {
+            "filepath": "/requirements.txt",
+            "entry_id": 62,
+            "language_id": "plain-text"
+        },
+        "8": {
+            "filepath": "/scripts/auto_tests_docs/auto_docs.py",
+            "entry_id": 66,
+            "language_id": "python"
+        },
+        "9": {
+            "filepath": "/scripts/auto_tests_docs/auto_docs_functions.py",
+            "entry_id": 74,
+            "language_id": "python"
+        },
+        "10": {
+            "filepath": "/scripts/auto_tests_docs/auto_tests.py",
+            "entry_id": 80,
+            "language_id": "python"
+        },
+        "11": {
+            "filepath": "/scripts/auto_tests_docs/auto_tests_functions.py",
+            "entry_id": 90,
+            "language_id": "python"
+        },
+        "12": {
+            "filepath": "/scripts/auto_tests_docs/docs.py",
+            "entry_id": 96,
+            "language_id": "python"
+        },
+        "13": {
+            "filepath": "/scripts/auto_tests_docs/mkdocs_handler.py",
+            "entry_id": 120,
+            "language_id": "python"
+        },
+        "14": {
+            "filepath": "/scripts/code_quality.sh",
+            "entry_id": 126,
+            "language_id": "shell"
+        },
+        "15": {
+            "filepath": "/scripts/delpycache.py",
+            "entry_id": 130,
+            "language_id": "python"
+        },
+        "16": {
+            "filepath": "/scripts/get_package_requirements.py",
+            "entry_id": 134,
+            "language_id": "python"
+        },
+        "17": {
+            "filepath": "/scripts/requirementstxt_to_pyproject.py",
+            "entry_id": 140,
+            "language_id": "python"
+        },
+        "18": {
+            "filepath": "/scripts/test_name.sh",
+            "entry_id": 146,
+            "language_id": "shell"
+        },
+        "19": {
+            "filepath": "/scripts/tests.sh",
+            "entry_id": 150,
+            "language_id": "shell"
+        },
+        "20": {
+            "filepath": "/tests/test_benchmarks.py",
+            "entry_id": 154,
+            "language_id": "python"
+        },
+        "21": {
+            "filepath": "/tests/test_blocks.py",
+            "entry_id": 160,
+            "language_id": "python"
+        },
+        "22": {
+            "filepath": "/tests/test_model.py",
+            "entry_id": 166,
+            "language_id": "python"
+        }
+    },
+    "project_name": "MultiModalMamba",
+    "split_count": 2
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "The given code executes the \"pytest\" command on all Python (.py) files found in the directory ./tests, using \"find\" command to search and \"exec\" for execution. It tests Python scripts.",
+    "details": [
+        {
+            "comment": "The given code executes the \"pytest\" command on all Python (.py) files found in the directory ./tests, using \"find\" command to search and \"exec\" for execution. It tests Python scripts.",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/scripts/tests.sh\":0-0",
+            "content": "find ./tests -name '*.py' -exec pytest {} \\;"
+        }
+    ]
+}

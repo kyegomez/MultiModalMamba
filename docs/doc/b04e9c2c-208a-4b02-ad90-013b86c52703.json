@@ -1,0 +1,15 @@
+{
+    "summary": "This script extracts package names and versions from a requirements.txt file, allowing for the installation of specific packages with their respective versions on another machine.",
+    "details": [
+        {
+            "comment": "This script reads a requirements.txt file, extracts package names and versions, and writes them to a new file. This can be used to install the same packages with specific versions on another machine.",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/scripts/get_package_requirements.py\":0-33",
+            "content": "\"\"\"\nThis script extracts the package names and versions from a requirements.txt file and writes them to a new file.\nThe new file can be used to install the same package versions on another machine.\n\"\"\"\nimport pkg_resources\ndef get_package_versions(requirements_path, output_path):\n    \"\"\"\n    Extract package names and versions from a requirements.txt file and write them to a new file.\n    \"\"\"\n    try:\n        with open(requirements_path, \"r\", encoding=\"utf-8\") as file:\n            requirements = file.readlines()\n    except FileNotFoundError:\n        print(f\"Error: The file '{requirements_path}' was not found.\")\n        return\n    package_versions = []\n    for requirement in requirements:\n        # Skip empty lines and comments\n        if (\n            requirement.strip() == \"\"\n            or requirement.strip().startswith(\"#\")\n        ):\n            continue\n        # Extract package name\n        package_name = requirement.split(\"==\")[0].strip()\n        try:\n            version = pkg_resources.get_distribution(\n                package_name"
+        },
+        {
+            "comment": "Code retrieves installed package versions and writes them to a file. It checks for installed packages, their names, and appends the version or \"not installed\" message if not found.",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/scripts/get_package_requirements.py\":34-46",
+            "content": "            ).version\n            package_versions.append(f\"{package_name}=={version}\")\n        except pkg_resources.DistributionNotFound:\n            package_versions.append(f\"{package_name}: not installed\")\n    with open(output_path, \"w\") as file:\n        for package_version in package_versions:\n            file.write(package_version + \"\\n\")\n    print(f\"Versions written to {output_path}\")\n# Usage\nget_package_versions(\"requirements.txt\", \"installed_versions.txt\")"
+        }
+    ]
+}

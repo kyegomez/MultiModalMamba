@@ -1,0 +1,15 @@
+{
+    "summary": "The code calls the `generate_file_list` function, which collects \".md\" files from a directory and writes their names in the specified format to an output file. In this case, it lists files from \"docs/zeta/ops\" in \"file_list.txt\".",
+    "details": [
+        {
+            "comment": "The function `generate_file_list` takes a directory and an output file as inputs. It walks through the directory, collects all files ending with \".md\", removes directory paths and slashes, keeps only the file name without extension, and writes each file's name and path in a specified format to the output file.",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/scripts/auto_tests_docs/mkdocs_handler.py\":0-26",
+            "content": "import os\ndef generate_file_list(directory, output_file):\n    \"\"\"\n    Generate a list of files in a directory in the specified format and write it to a file.\n    Args:\n    directory (str): The directory to list the files from.\n    output_file (str): The file to write the output to.\n    \"\"\"\n    with open(output_file, \"w\") as f:\n        for root, dirs, files in os.walk(directory):\n            for file in files:\n                if file.endswith(\".md\"):\n                    # Remove the directory from the file path and replace slashes with dots\n                    file_path = (\n                        os.path.join(root, file)\n                        .replace(directory + \"/\", \"\")\n                        .replace(\"/\", \".\")\n                    )\n                    # Remove the file extension\n                    file_name, _ = os.path.splitext(file)\n                    # Write the file name and path to the output file\n                    f.write(\n                        f'- {file_name}: \"{directory}/{file_path}\"\\n'\n                    )"
+        },
+        {
+            "comment": "This code is calling the function \"generate_file_list\" to create a file list from the given directory (\"docs/zeta/ops\") and save it in the specified file (\"file_list.txt\").",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/scripts/auto_tests_docs/mkdocs_handler.py\":29-30",
+            "content": "# Use the function to generate the file list\ngenerate_file_list(\"docs/zeta/ops\", \"file_list.txt\")"
+        }
+    ]
+}

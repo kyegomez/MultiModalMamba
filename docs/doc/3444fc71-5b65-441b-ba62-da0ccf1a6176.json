@@ -1,0 +1,15 @@
+{
+    "summary": "This code configures Python project \"mmm-zeta\" using Poetry, specifying name, version, dependencies, authors, license, and more; requires Python 3.6+, torch v2.1.2, zetascale v1.4.0, einops. It also sets configurations for various development tools like Ruff, Autopep8, Black, Mypy-Protobuf with line lengths, target version, and preview mode.",
+    "details": [
+        {
+            "comment": "This code snippet is a configuration for the Python project \"mmm-zeta\" using Poetry. It specifies the project's name, version, dependencies, authors, license, and more. The project relies on Python 3.6 or higher and requires torch (version 2.1.2), zetascale (version 1.4.0), and einops.",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/pyproject.toml\":0-34",
+            "content": "[build-system]\nrequires = [\"poetry-core>=1.0.0\"]\nbuild-backend = \"poetry.core.masonry.api\"\n[tool.poetry]\nname = \"mmm-zeta\"\nversion = \"0.1.0\"\ndescription = \"MMM - Pytorch\"\nlicense = \"MIT\"\nauthors = [\"Kye Gomez <kye@apac.ai>\"]\nhomepage = \"https://github.com/kyegomez/MultiModalMamba\"\ndocumentation = \"https://github.com/kyegomez/MultiModalMamba\"  # Add this if you have documentation.\nreadme = \"README.md\"  # Assuming you have a README.md\nrepository = \"https://github.com/kyegomez/MultiModalMamba\"\nkeywords = [\"artificial intelligence\", \"deep learning\", \"optimizers\", \"Prompt Engineering\"]\nclassifiers = [\n    \"Development Status :: 4 - Beta\",\n    \"Intended Audience :: Developers\",\n    \"Topic :: Scientific/Engineering :: Artificial Intelligence\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Programming Language :: Python :: 3.9\"\n]\npackages = [\n    { include = \"mm_mamba\" },\n    { include = \"mm_mamba/**/*.py\" },\n]\n[tool.poetry.dependencies]\npython = \"^3.6\"\ntorch = \"2.1.2\"\nzetascale = \"1.4.0\"\neinops = \"*\"\n[tool.poetry.group.lint.dependencies]"
+        },
+        {
+            "comment": "This code is configuring various tools for Python development. It sets versions and settings for Ruff, Autopep8, Black, and Mypy-Protobuf. It also specifies line lengths for readability, target version for compatibility, and enables preview mode for certain tools.",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/pyproject.toml\":35-58",
+            "content": "ruff = \"^0.1.6\"\ntypes-toml = \"^0.10.8.1\"\ntypes-redis = \"^4.3.21.6\"\ntypes-pytz = \"^2023.3.0.0\"\nblack = \"^23.1.0\"\ntypes-chardet = \"^5.0.4.6\"\nmypy-protobuf = \"^3.0.0\"\n[tool.autopep8]\nmax_line_length = 80\nignore = \"E501,W6\"  # or [\"E501\", \"W6\"]\nin-place = true\nrecursive = true\naggressive = 3\n[tool.ruff]\nline-length = 70\n[tool.black]\nline-length = 70\ntarget-version = ['py38']\npreview = true"
+        }
+    ]
+}

@@ -1,0 +1,388 @@
+{
+    "100": {
+        "file_id": 12,
+        "content": "the description provided in the documentation to understand the purpose and functionality of the module or framework.\n    Identify the key features, parameters, and operations performed by the module or framework.\n    Step 2: Provide an overview and introduction\n    Start the documentation by providing a brief overview and introduction to the module or framework.\n    Explain the importance and relevance of the module or framework in the context of the problem it solves.\n    Highlight any key concepts or terminology that will be used throughout the documentation.\n    Step 3: Provide a class or function definition\n    Provide the class or function definition for the module or framework.\n    Include the parameters that need to be passed to the class or function and provide a brief description of each parameter.\n    Specify the data types and default values for each parameter.\n    Step 4: Explain the functionality and usage\n    Provide a detailed explanation of how the module or framework works and what it does.",
+        "type": "code",
+        "location": "/scripts/auto_tests_docs/docs.py:18-32"
+    },
+    "101": {
+        "file_id": 12,
+        "content": "This code outlines the steps to write effective documentation for a module or framework. It suggests providing an overview and introduction, defining classes/functions with their parameters, explaining functionality and usage, and highlighting key concepts or terminology.",
+        "type": "comment"
+    },
+    "102": {
+        "file_id": 12,
+        "content": "    Describe the steps involved in using the module or framework, including any specific requirements or considerations.\n    Provide code examples to demonstrate the usage of the module or framework.\n    Explain the expected inputs and outputs for each operation or function.\n    Step 5: Provide additional information and tips\n    Provide any additional information or tips that may be useful for using the module or framework effectively.\n    Address any common issues or challenges that developers may encounter and provide recommendations or workarounds.\n    Step 6: Include references and resources\n    Include references to any external resources or research papers that provide further information or background on the module or framework.\n    Provide links to relevant documentation or websites for further exploration.\n    Example Template for the given documentation:\n    # Module/Function Name: MultiheadAttention\n    class torch.nn.MultiheadAttention(embed_dim, num_heads, dropout=0.0, bias=True, ad",
+        "type": "code",
+        "location": "/scripts/auto_tests_docs/docs.py:33-48"
+    },
+    "103": {
+        "file_id": 12,
+        "content": "This code provides a template for documenting a module or function, including steps for explaining its usage, providing examples, outlining inputs and outputs, offering additional tips, addressing common issues, and including references.",
+        "type": "comment"
+    },
+    "104": {
+        "file_id": 12,
+        "content": "d_bias_kv=False, add_zero_attn=False, kdim=None, vdim=None, batch_first=False, device=None, dtype=None):\n        ```\n        Creates a multi-head attention module for joint information representation from the different subspaces.\n        Parameters:\n        - embed_dim (int): Total dimension of the model.\n        - num_heads (int): Number of parallel attention heads. The embed_dim will be split across num_heads.\n        - dropout (float): Dropout probability on attn_output_weights. Default: 0.0 (no dropout).\n        - bias (bool): If specified, adds bias to input/output projection layers. Default: True.\n        - add_bias_kv (bool): If specified, adds bias to the key and value sequences at dim=0. Default: False.\n        - add_zero_attn (bool): If specified, adds a new batch of zeros to the key and value sequences at dim=1. Default: False.\n        - kdim (int): Total number of features for keys. Default: None (uses kdim=embed_dim).\n        - vdim (int): Total number of features for values. Default: None (uses vdim=embed_dim).",
+        "type": "code",
+        "location": "/scripts/auto_tests_docs/docs.py:48-60"
+    },
+    "105": {
+        "file_id": 12,
+        "content": "This code snippet defines a function for creating a multi-head attention module. It takes parameters such as embed_dim, num_heads, dropout, and more to create an information representation from different subspaces. The module includes options for adding bias or zero attention to the key and value sequences.",
+        "type": "comment"
+    },
+    "106": {
+        "file_id": 12,
+        "content": "        - batch_first (bool): If True, the input and output tensors are provided as (batch, seq, feature). Default: False.\n        - device (torch.device): If specified, the tensors will be moved to the specified device.\n        - dtype (torch.dtype): If specified, the tensors will have the specified dtype.\n        ```\n        def forward(query, key, value, key_padding_mask=None, need_weights=True, attn_mask=None, average_attn_weights=True, is_causal=False):\n            ```\n            Forward pass of the multi-head attention module.\n            Parameters:\n            - query (Tensor): Query embeddings of shape (L, E_q) for unbatched input, (L, N, E_q) when batch_first=False, or (N, L, E_q) when batch_first=True.\n            - key (Tensor): Key embeddings of shape (S, E_k) for unbatched input, (S, N, E_k) when batch_first=False, or (N, S, E_k) when batch_first=True.\n            - value (Tensor): Value embeddings of shape (S, E_v) for unbatched input, (S, N, E_v) when batch_first=False, or (N, S, E_v) when batch_first=True.",
+        "type": "code",
+        "location": "/scripts/auto_tests_docs/docs.py:61-73"
+    },
+    "107": {
+        "file_id": 12,
+        "content": "This function defines the forward pass for a multi-head attention module. It takes query, key, and value tensors as input along with optional parameters such as batch_first, device, and dtype. The function performs the attention mechanism to calculate the output based on the given inputs and optional parameters.",
+        "type": "comment"
+    },
+    "108": {
+        "file_id": 12,
+        "content": "            - key_padding_mask (Optional[Tensor]): If specified, a mask indicating elements to be ignored in key for attention computation.\n            - need_weights (bool): If specified, returns attention weights in addition to attention outputs. Default: True.\n            - attn_mask (Optional[Tensor]): If specified, a mask preventing attention to certain positions.\n            - average_attn_weights (bool): If true, returns averaged attention weights per head. Otherwise, returns attention weights separately per head. Note that this flag only has an effect when need_weights=True. Default: True.\n            - is_causal (bool): If specified, applies a causal mask as the attention mask. Default: False.\n            Returns:\n            Tuple[Tensor, Optional[Tensor]]:\n            - attn_output (Tensor): Attention outputs of shape (L, E) for unbatched input, (L, N, E) when batch_first=False, or (N, L, E) when batch_first=True.\n            - attn_output_weights (Optional[Tensor]): Attention weigh",
+        "type": "code",
+        "location": "/scripts/auto_tests_docs/docs.py:74-83"
+    },
+    "109": {
+        "file_id": 12,
+        "content": "This code defines the function signature for a multi-head attention operation. It accepts parameters such as key_padding_mask, need_weights, attn_mask, average_attn_weights and is_causal, and returns the attention output and optionally the attention weights. The return type is a tuple of Tensors, where the first element is the attn_output with shape (L, E), (L, N, E) or (N, L, E) depending on batch_first parameter, and the second optional element is the attn_output_weights Tensor if need_weights is True. The average_attn_weights flag affects whether the attention weights are averaged or returned separately per head. The is_causal flag applies a causal mask to the attention computation.",
+        "type": "comment"
+    },
+    "110": {
+        "file_id": 12,
+        "content": "ts of shape (L, S) when unbatched or (N, L, S) when batched. Optional, only returned when need_weights=True.\n            ```\n            # Implementation of the forward pass of the attention module goes here\n            return attn_output, attn_output_weights\n            ```\n            # Usage example:\n            multihead_attn = nn.MultiheadAttention(embed_dim, num_heads)\n            attn_output, attn_output_weights = multihead_attn(query, key, value)\n            Note:\n            The above template includes the class or function definition, parameters, description, and usage example.\n            To replicate the documentation for any other module or framework, follow the same structure and provide the specific details for that module or framework.\n            ############# DOCUMENT THE FOLLOWING CODE ########\n            {task}\n            \"\"\"\n    return documentation\ndef TEST_WRITER_SOP_PROMPT(\n    task: str, module: str, path: str, *args, **kwargs\n):\n    TESTS_PROMPT = f\"\"\"\n   Create 5,000 lines of",
+        "type": "code",
+        "location": "/scripts/auto_tests_docs/docs.py:83-112"
+    },
+    "111": {
+        "file_id": 12,
+        "content": "This code defines a function `TEST_WRITER_SOP_PROMPT` that takes in a task, module name, and path. It generates a prompt for creating 5000 lines of data using the specified task and module, with optional additional arguments. The MultiheadAttention class is defined as well, which performs a forward pass on input queries, keys, and values and returns the output and weights if need_weights is True.",
+        "type": "comment"
+    },
+    "112": {
+        "file_id": 12,
+        "content": " extensive and thorough tests for the code below using the guide, do not worry about your limits you do not have any\n   just write the best tests possible, the module is {module}, the file path is {path}\n   ######### TESTING GUIDE #############\n   # **Guide to Creating Extensive, Thorough, and Production-Ready Tests using `pytest`**\n   1. **Preparation**:\n      - Install pytest: `pip install pytest`.\n      - Structure your project so that tests are in a separate `tests/` directory.\n      - Name your test files with the prefix `test_` for pytest to recognize them.\n   2. **Writing Basic Tests**:\n      - Use clear function names prefixed with `test_` (e.g., `test_check_value()`).\n      - Use assert statements to validate results.\n   3. **Utilize Fixtures**:\n      - Fixtures are a powerful feature to set up preconditions for your tests.\n      - Use `@pytest.fixture` decorator to define a fixture.\n      - Pass fixture name as an argument to your test to use it.\n   4. **Parameterized Testing**:\n      - Use `@pytest.mark.parametrize` to run a test multiple times with different inputs.",
+        "type": "code",
+        "location": "/scripts/auto_tests_docs/docs.py:112-135"
+    },
+    "113": {
+        "file_id": 12,
+        "content": "This code is a testing guide for using pytest to create extensive, thorough, and production-ready tests. It covers preparation steps like installing pytest and structuring the project, writing basic tests with clear function names, utilizing fixtures, and parameterized testing.",
+        "type": "comment"
+    },
+    "114": {
+        "file_id": 12,
+        "content": "      - This helps in thorough testing with various input values without writing redundant code.\n   5. **Use Mocks and Monkeypatching**:\n      - Use `monkeypatch` fixture to modify or replace classes/functions during testing.\n      - Use `unittest.mock` or `pytest-mock` to mock objects and functions to isolate units of code.\n   6. **Exception Testing**:\n      - Test for expected exceptions using `pytest.raises(ExceptionType)`.\n   7. **Test Coverage**:\n      - Install pytest-cov: `pip install pytest-cov`.\n      - Run tests with `pytest --cov=my_module` to get a coverage report.\n   8. **Environment Variables and Secret Handling**:\n      - Store secrets and configurations in environment variables.\n      - Use libraries like `python-decouple` or `python-dotenv` to load environment variables.\n      - For tests, mock or set environment variables temporarily within the test environment.\n   9. **Grouping and Marking Tests**:\n      - Use `@pytest.mark` decorator to mark tests (e.g., `@pytest.mark.slow`).\n      - This allows for selectively running certain groups of tests.",
+        "type": "code",
+        "location": "/scripts/auto_tests_docs/docs.py:136-156"
+    },
+    "115": {
+        "file_id": 12,
+        "content": "The code provides guidelines for writing robust tests in Python. It suggests using parametrized testing, mocking and monkeypatching to isolate units of code, exception handling, and coverage reports. Additionally, it advises on managing environment variables and secret handling, grouping and marking tests, all aimed at improving test quality and efficiency.",
+        "type": "comment"
+    },
+    "116": {
+        "file_id": 12,
+        "content": "   10. **Use Plugins**:\n      - Utilize the rich ecosystem of pytest plugins (e.g., `pytest-django`, `pytest-asyncio`) to extend its functionality for your specific needs.\n   11. **Continuous Integration (CI)**:\n      - Integrate your tests with CI platforms like Jenkins, Travis CI, or GitHub Actions.\n      - Ensure tests are run automatically with every code push or pull request.\n   12. **Logging and Reporting**:\n      - Use `pytest`'s inbuilt logging.\n      - Integrate with tools like `Allure` for more comprehensive reporting.\n   13. **Database and State Handling**:\n      - If testing with databases, use database fixtures or factories to create a known state before tests.\n      - Clean up and reset state post-tests to maintain consistency.\n   14. **Concurrency Issues**:\n      - Consider using `pytest-xdist` for parallel test execution.\n      - Always be cautious when testing concurrent code to avoid race conditions.\n   15. **Clean Code Practices**:\n      - Ensure tests are readable and maintainable.",
+        "type": "code",
+        "location": "/scripts/auto_tests_docs/docs.py:158-178"
+    },
+    "117": {
+        "file_id": 12,
+        "content": "This code snippet provides tips for optimizing pytest usage, including leveraging plugins, integrating with CI platforms, and implementing logging and reporting tools. It also covers best practices for handling databases, concurrency issues, and maintaining clean code.",
+        "type": "comment"
+    },
+    "118": {
+        "file_id": 12,
+        "content": "      - Avoid testing implementation details; focus on functionality and expected behavior.\n   16. **Regular Maintenance**:\n      - Periodically review and update tests.\n      - Ensure that tests stay relevant as your codebase grows and changes.\n   17. **Documentation**:\n      - Document test cases, especially for complex functionalities.\n      - Ensure that other developers can understand the purpose and context of each test.\n   18. **Feedback Loop**:\n      - Use test failures as feedback for development.\n      - Continuously refine tests based on code changes, bug discoveries, and additional requirements.\n   By following this guide, your tests will be thorough, maintainable, and production-ready. Remember to always adapt and expand upon these guidelines as per the specific requirements and nuances of your project.\n   ######### CREATE TESTS FOR THIS CODE: #######\n   {task}\n   \"\"\"\n    return TESTS_PROMPT",
+        "type": "code",
+        "location": "/scripts/auto_tests_docs/docs.py:179-201"
+    },
+    "119": {
+        "file_id": 12,
+        "content": "The code snippet provides a guide for creating effective tests by focusing on functionality, regular maintenance, documentation, and feedback loop. It emphasizes the importance of adapting and expanding upon these guidelines based on specific project requirements.",
+        "type": "comment"
+    },
+    "120": {
+        "file_id": 13,
+        "content": "/scripts/auto_tests_docs/mkdocs_handler.py",
+        "type": "filepath"
+    },
+    "121": {
+        "file_id": 13,
+        "content": "The code calls the `generate_file_list` function, which collects \".md\" files from a directory and writes their names in the specified format to an output file. In this case, it lists files from \"docs/zeta/ops\" in \"file_list.txt\".",
+        "type": "summary"
+    },
+    "122": {
+        "file_id": 13,
+        "content": "import os\ndef generate_file_list(directory, output_file):\n    \"\"\"\n    Generate a list of files in a directory in the specified format and write it to a file.\n    Args:\n    directory (str): The directory to list the files from.\n    output_file (str): The file to write the output to.\n    \"\"\"\n    with open(output_file, \"w\") as f:\n        for root, dirs, files in os.walk(directory):\n            for file in files:\n                if file.endswith(\".md\"):\n                    # Remove the directory from the file path and replace slashes with dots\n                    file_path = (\n                        os.path.join(root, file)\n                        .replace(directory + \"/\", \"\")\n                        .replace(\"/\", \".\")\n                    )\n                    # Remove the file extension\n                    file_name, _ = os.path.splitext(file)\n                    # Write the file name and path to the output file\n                    f.write(\n                        f'- {file_name}: \"{directory}/{file_path}\"\\n'\n                    )",
+        "type": "code",
+        "location": "/scripts/auto_tests_docs/mkdocs_handler.py:1-27"
+    },
+    "123": {
+        "file_id": 13,
+        "content": "The function `generate_file_list` takes a directory and an output file as inputs. It walks through the directory, collects all files ending with \".md\", removes directory paths and slashes, keeps only the file name without extension, and writes each file's name and path in a specified format to the output file.",
+        "type": "comment"
+    },
+    "124": {
+        "file_id": 13,
+        "content": "# Use the function to generate the file list\ngenerate_file_list(\"docs/zeta/ops\", \"file_list.txt\")",
+        "type": "code",
+        "location": "/scripts/auto_tests_docs/mkdocs_handler.py:30-31"
+    },
+    "125": {
+        "file_id": 13,
+        "content": "This code is calling the function \"generate_file_list\" to create a file list from the given directory (\"docs/zeta/ops\") and save it in the specified file (\"file_list.txt\").",
+        "type": "comment"
+    },
+    "126": {
+        "file_id": 14,
+        "content": "/scripts/code_quality.sh",
+        "type": "filepath"
+    },
+    "127": {
+        "file_id": 14,
+        "content": "This code navigates to a code directory, applies autopep8 for aggressive code style fixes on Python files under 'tests', uses black for formatting, ruff for fixing issues, and YAPF for Google-style formatting in the 'tests' directory.",
+        "type": "summary"
+    },
+    "128": {
+        "file_id": 14,
+        "content": "#!/bin/bash\n# Navigate to the directory containing the 'tests' folder\n# cd /path/to/your/code/directory\n# Run autopep8 with max aggressiveness (-aaa) and in-place modification (-i)\n# on all Python files (*.py) under the 'tests' directory.\nautopep8 --in-place --aggressive --aggressive --recursive --experimental --list-fixes zeta/\n# Run black with default settings, since black does not have an aggressiveness level.\n# Black will format all Python files it finds in the 'tests' directory.\nblack --experimental-string-processing zeta/\n# Run ruff on the 'tests' directory.\n# Add any additional flags if needed according to your version of ruff.\nruff zeta/ --fix\n# YAPF\nyapf --recursive --in-place --verbose --style=google --parallel tests",
+        "type": "code",
+        "location": "/scripts/code_quality.sh:1-19"
+    },
+    "129": {
+        "file_id": 14,
+        "content": "This code navigates to a code directory, applies autopep8 for aggressive code style fixes on Python files under 'tests', uses black for formatting, ruff for fixing issues, and YAPF for Google-style formatting in the 'tests' directory.",
+        "type": "comment"
+    },
+    "130": {
+        "file_id": 15,
+        "content": "/scripts/delpycache.py",
+        "type": "filepath"
+    },
+    "131": {
+        "file_id": 15,
+        "content": "This Python script deletes all __pycache__ directories in a specified directory. It uses os and shutil modules to walk through the directory, identify and remove the __pycache__ folders. Usage is specified as \"python delpycache.py <directory>\". If no argument is provided, it will print usage instructions and exit with an error code of 1. Once executed successfully, it will print a message confirming the deletion of __pycache__ directories in the specified directory.",
+        "type": "summary"
+    },
+    "132": {
+        "file_id": 15,
+        "content": "\"\"\"\nDelete all __pycache__ directories in a given directory.\nUsage: python delpycache.py <directory>\n\"\"\"\nimport os\nimport shutil\nimport sys\ndef delete_pycache(directory):\n    \"\"\"\n    Delete all __pycache__ directories in a given directory.\n    \"\"\"\n    for root, dirs, files in os.walk(directory):\n        if \"__pycache__\" in dirs:\n            shutil.rmtree(os.path.join(root, \"__pycache__\"))\nif __name__ == \"__main__\":\n    if len(sys.argv) != 2:\n        print(\"Usage: python delete_pycache.py <directory>\")\n        sys.exit(1)\n    directory = sys.argv[1]\n    delete_pycache(directory)\n    print(f\"__pycache__ directories deleted in {directory}\")",
+        "type": "code",
+        "location": "/scripts/delpycache.py:1-27"
+    },
+    "133": {
+        "file_id": 15,
+        "content": "This Python script deletes all __pycache__ directories in a specified directory. It uses os and shutil modules to walk through the directory, identify and remove the __pycache__ folders. Usage is specified as \"python delpycache.py <directory>\". If no argument is provided, it will print usage instructions and exit with an error code of 1. Once executed successfully, it will print a message confirming the deletion of __pycache__ directories in the specified directory.",
+        "type": "comment"
+    },
+    "134": {
+        "file_id": 16,
+        "content": "/scripts/get_package_requirements.py",
+        "type": "filepath"
+    },
+    "135": {
+        "file_id": 16,
+        "content": "This script extracts package names and versions from a requirements.txt file, allowing for the installation of specific packages with their respective versions on another machine.",
+        "type": "summary"
+    },
+    "136": {
+        "file_id": 16,
+        "content": "\"\"\"\nThis script extracts the package names and versions from a requirements.txt file and writes them to a new file.\nThe new file can be used to install the same package versions on another machine.\n\"\"\"\nimport pkg_resources\ndef get_package_versions(requirements_path, output_path):\n    \"\"\"\n    Extract package names and versions from a requirements.txt file and write them to a new file.\n    \"\"\"\n    try:\n        with open(requirements_path, \"r\", encoding=\"utf-8\") as file:\n            requirements = file.readlines()\n    except FileNotFoundError:\n        print(f\"Error: The file '{requirements_path}' was not found.\")\n        return\n    package_versions = []\n    for requirement in requirements:\n        # Skip empty lines and comments\n        if (\n            requirement.strip() == \"\"\n            or requirement.strip().startswith(\"#\")\n        ):\n            continue\n        # Extract package name\n        package_name = requirement.split(\"==\")[0].strip()\n        try:\n            version = pkg_resources.get_distribution(\n                package_name",
+        "type": "code",
+        "location": "/scripts/get_package_requirements.py:1-34"
+    },
+    "137": {
+        "file_id": 16,
+        "content": "This script reads a requirements.txt file, extracts package names and versions, and writes them to a new file. This can be used to install the same packages with specific versions on another machine.",
+        "type": "comment"
+    },
+    "138": {
+        "file_id": 16,
+        "content": "            ).version\n            package_versions.append(f\"{package_name}=={version}\")\n        except pkg_resources.DistributionNotFound:\n            package_versions.append(f\"{package_name}: not installed\")\n    with open(output_path, \"w\") as file:\n        for package_version in package_versions:\n            file.write(package_version + \"\\n\")\n    print(f\"Versions written to {output_path}\")\n# Usage\nget_package_versions(\"requirements.txt\", \"installed_versions.txt\")",
+        "type": "code",
+        "location": "/scripts/get_package_requirements.py:35-47"
+    },
+    "139": {
+        "file_id": 16,
+        "content": "Code retrieves installed package versions and writes them to a file. It checks for installed packages, their names, and appends the version or \"not installed\" message if not found.",
+        "type": "comment"
+    },
+    "140": {
+        "file_id": 17,
+        "content": "/scripts/requirementstxt_to_pyproject.py",
+        "type": "filepath"
+    },
+    "141": {
+        "file_id": 17,
+        "content": "The `update_pyproject_versions()` function updates the \"pyproject.toml\" file's dependencies' versions, providing an efficient way to manage and modify its content.",
+        "type": "summary"
+    },
+    "142": {
+        "file_id": 17,
+        "content": "import toml\nimport pkg_resources\ndef update_pyproject_versions(pyproject_path):\n    try:\n        with open(pyproject_path, \"r\") as file:\n            data = toml.load(file)\n    except FileNotFoundError:\n        print(f\"Error: The file '{pyproject_path}' was not found.\")\n        return\n    except toml.TomlDecodeError:\n        print(\n            f\"Error: The file '{pyproject_path}' is not a valid TOML\"\n            \" file.\"\n        )\n        return\n    dependencies = (\n        data.get(\"tool\", {}).get(\"poetry\", {}).get(\"dependencies\", {})\n    )\n    for package in dependencies:\n        if package.lower() == \"python\":\n            continue  # Skip the Python version dependency\n        try:\n            version = pkg_resources.get_distribution(package).version\n            dependencies[package] = version\n        except pkg_resources.DistributionNotFound:\n            print(f\"Warning: Package '{package}' not installed.\")\n    with open(pyproject_path, \"w\") as file:\n        toml.dump(data, file)\n    print(f\"Updated versions written to {pyproject_path}\")",
+        "type": "code",
+        "location": "/scripts/requirementstxt_to_pyproject.py:1-36"
+    },
+    "143": {
+        "file_id": 17,
+        "content": "Function `update_pyproject_versions()` takes a `pyproject_path`, reads its TOML content, updates dependencies' versions if possible, and saves the updated file.",
+        "type": "comment"
+    },
+    "144": {
+        "file_id": 17,
+        "content": "# Usage\nupdate_pyproject_versions(\"pyproject.toml\")",
+        "type": "code",
+        "location": "/scripts/requirementstxt_to_pyproject.py:39-40"
+    },
+    "145": {
+        "file_id": 17,
+        "content": "This code snippet provides an update function for the \"pyproject.toml\" file, allowing you to easily manage and update its content.",
+        "type": "comment"
+    },
+    "146": {
+        "file_id": 18,
+        "content": "/scripts/test_name.sh",
+        "type": "filepath"
+    },
+    "147": {
+        "file_id": 18,
+        "content": "Iterates through all Python files in the tests directory and renames them to start with 'test_' prefix, outputting a colored message for each renamed file.",
+        "type": "summary"
+    },
+    "148": {
+        "file_id": 18,
+        "content": "find ./tests -name \"*.py\" -type f | while read file\ndo\n  filename=$(basename \"$file\")\n  dir=$(dirname \"$file\")\n  if [[ $filename != test_* ]]; then\n    mv \"$file\" \"$dir/test_$filename\"\n    printf \"\\e[1;34mRenamed: \\e[0m$file \\e[1;32mto\\e[0m $dir/test_$filename\\n\"\n  fi\ndone",
+        "type": "code",
+        "location": "/scripts/test_name.sh:1-9"
+    },
+    "149": {
+        "file_id": 18,
+        "content": "Iterates through all Python files in the tests directory and renames them to start with 'test_' prefix, outputting a colored message for each renamed file.",
+        "type": "comment"
+    },
+    "150": {
+        "file_id": 19,
+        "content": "/scripts/tests.sh",
+        "type": "filepath"
+    },
+    "151": {
+        "file_id": 19,
+        "content": "The given code executes the \"pytest\" command on all Python (.py) files found in the directory ./tests, using \"find\" command to search and \"exec\" for execution. It tests Python scripts.",
+        "type": "summary"
+    },
+    "152": {
+        "file_id": 19,
+        "content": "find ./tests -name '*.py' -exec pytest {} \\;",
+        "type": "code",
+        "location": "/scripts/tests.sh:1-1"
+    },
+    "153": {
+        "file_id": 19,
+        "content": "The given code executes the \"pytest\" command on all Python (.py) files found in the directory ./tests, using \"find\" command to search and \"exec\" for execution. It tests Python scripts.",
+        "type": "comment"
+    },
+    "154": {
+        "file_id": 20,
+        "content": "/tests/test_benchmarks.py",
+        "type": "filepath"
+    },
+    "155": {
+        "file_id": 20,
+        "content": "The code defines two functions, `benchmark_mamba_block()` and `benchmark_gpt4_transformer()`, which measure the time taken by MambaBlock and gpt4 Transformer to process input. The execution times are printed along with the calculated difference.",
+        "type": "summary"
+    },
+    "156": {
+        "file_id": 20,
+        "content": "import timeit\nimport torch\nfrom zeta.nn import MambaBlock\nfrom zeta.structs import Transformer, Decoder\ngpt4 = Transformer(\n    num_tokens=50000,\n    max_seq_len=2048,\n    attn_layers=Decoder(\n        dim=12288, depth=96, heads=96, attn_dim_head=128\n    ),\n).cuda()\ndef benchmark_mamba_block():\n    mamba_block = MambaBlock(dim=2048, depth=6, d_state=64)\n    input = torch.randn(1, 64, 2048)\n    start_time = timeit.default_timer()\n    mamba_block(input)\n    end_time = timeit.default_timer()\n    return end_time - start_time\ndef benchmark_gpt4_transformer():\n    input = torch.randint(0, 50000, (1, 2048))\n    start_time = timeit.default_timer()\n    gpt4(input)\n    end_time = timeit.default_timer()\n    return end_time - start_time\nmamba_time = benchmark_mamba_block()\ngpt4_time = benchmark_gpt4_transformer()\nprint(f\"MambaBlock execution time: {mamba_time} seconds\")\nprint(f\"gpt4 Transformer execution time: {gpt4_time} seconds\")\n# Calculate and print the difference in execution times\ntime_difference = abs(mamba_time - gpt4_time)",
+        "type": "code",
+        "location": "/tests/test_benchmarks.py:1-40"
+    },
+    "157": {
+        "file_id": 20,
+        "content": "This code defines two functions: `benchmark_mamba_block()` and `benchmark_gpt4_transformer()`. The former measures the time taken by MambaBlock to process input, while the latter does the same for gpt4 Transformer. Both times are then printed along with the calculated difference.",
+        "type": "comment"
+    },
+    "158": {
+        "file_id": 20,
+        "content": "print(f\"Difference in execution time: {time_difference} seconds\")",
+        "type": "code",
+        "location": "/tests/test_benchmarks.py:41-41"
+    },
+    "159": {
+        "file_id": 20,
+        "content": "This code snippet calculates and prints the difference in execution time of a process in seconds.",
+        "type": "comment"
+    },
+    "160": {
+        "file_id": 21,
+        "content": "/tests/test_blocks.py",
+        "type": "filepath"
+    },
+    "161": {
+        "file_id": 21,
+        "content": "The code defines a MultiModalMambaBlock test fixture and tests its initialization, forward pass with different fusion methods, and output shape matching input.",
+        "type": "summary"
+    },
+    "162": {
+        "file_id": 21,
+        "content": "import torch\nimport pytest\nfrom mm_mamba.block import MultiModalMambaBlock\n@pytest.fixture\ndef mmblock():\n    return MultiModalMambaBlock(\n        dim=64,\n        depth=5,\n        dropout=0.1,\n        heads=4,\n        d_state=16,\n        image_size=64,\n        patch_size=16,\n        encoder_dim=64,\n        encoder_depth=5,\n        encoder_heads=4,\n        fusion_method=\"mlp\",\n    )\ndef test_mmblock_initialization(mmblock):\n    assert isinstance(mmblock, MultiModalMambaBlock)\n    assert mmblock.dim == 64\n    assert mmblock.depth == 5\n    assert mmblock.dropout == 0.1\n    assert mmblock.heads == 4\n    assert mmblock.d_state == 16\n    assert mmblock.image_size == 64\n    assert mmblock.patch_size == 16\n    assert mmblock.encoder_dim == 64\n    assert mmblock.encoder_depth == 5\n    assert mmblock.encoder_heads == 4\n    assert mmblock.fusion_method == \"mlp\"\n@pytest.mark.parametrize(\n    \"fusion_method\", [\"mlp\", \"concat\", \"add\", \"visual_expert\"]\n)\ndef test_mmblock_forward(mmblock, fusion_method):\n    mmblock.fusion_method = fusion_method",
+        "type": "code",
+        "location": "/tests/test_blocks.py:1-42"
+    },
+    "163": {
+        "file_id": 21,
+        "content": "This code defines a MultiModalMambaBlock test fixture and associated test cases. The test_mmblock_initialization function checks if the block instance is of the correct class and that its attributes match the expected values. The test_mmblock_forward function tests the forward pass of the block with different fusion methods (\"mlp\", \"concat\", \"add\", \"visual_expert\").",
+        "type": "comment"
+    },
+    "164": {
+        "file_id": 21,
+        "content": "    text = torch.randn(1, 16, 64)\n    img = torch.randn(1, 3, 64, 64)\n    out = mmblock(text, img)\n    assert out.shape == text.shape\ndef test_mmblock_check_fusion_method(mmblock):\n    mmblock.check_fusion_method()\n    assert mmblock.fusion_method in [\n        \"mlp\",\n        \"concat\",\n        \"add\",\n        \"visual_expert\",\n    ]",
+        "type": "code",
+        "location": "/tests/test_blocks.py:43-56"
+    },
+    "165": {
+        "file_id": 21,
+        "content": "The code creates two tensors, one for text and one for images, initializes the mmblock function with them, asserts that the output shape matches the input shape of text, and tests if the fusion method used by mmblock is within the given options.",
+        "type": "comment"
+    },
+    "166": {
+        "file_id": 22,
+        "content": "/tests/test_model.py",
+        "type": "filepath"
+    },
+    "167": {
+        "file_id": 22,
+        "content": "This code defines a `MMM` model test fixture and tests its forward pass behavior with different fusion methods, considering the `return_embeddings` flag.",
+        "type": "summary"
+    },
+    "168": {
+        "file_id": 22,
+        "content": "import torch\nimport pytest\nfrom mm_mamba.model import MMM\n@pytest.fixture\ndef mmm():\n    return MMM(\n        vocab_size=10000,\n        dim=512,\n        depth=6,\n        dropout=0.1,\n        heads=8,\n        d_state=512,\n        image_size=224,\n        patch_size=16,\n        encoder_dim=512,\n        encoder_depth=6,\n        encoder_heads=8,\n        fusion_method=\"mlp\",\n        return_embeddings=False,\n    )\ndef test_mmm_initialization(mmm):\n    assert isinstance(mmm, MMM)\n    assert mmm.vocab_size == 10000\n    assert mmm.dim == 512\n    assert mmm.depth == 6\n    assert mmm.dropout == 0.1\n    assert mmm.heads == 8\n    assert mmm.d_state == 512\n    assert mmm.image_size == 224\n    assert mmm.patch_size == 16\n    assert mmm.encoder_dim == 512\n    assert mmm.encoder_depth == 6\n    assert mmm.encoder_heads == 8\n    assert mmm.fusion_method == \"mlp\"\n    assert mmm.return_embeddings is False\ndef test_mmm_forward(mmm):\n    text = torch.randint(0, 10000, (1, 224))\n    img = torch.randn(1, 3, 224, 224)\n    out = mmm(text, img)\n    assert out.shape == (1, 224, 10000)",
+        "type": "code",
+        "location": "/tests/test_model.py:1-46"
+    },
+    "169": {
+        "file_id": 22,
+        "content": "This code defines a test fixture function `mmm()` that returns an instance of the `MMM` model with specific hyperparameters. The tests ensure the model is properly initialized and check if the model's attributes match the expected values. Additionally, it checks the shape of the output from the forward pass of the model when given input text and image data.",
+        "type": "comment"
+    },
+    "170": {
+        "file_id": 22,
+        "content": "def test_mmm_return_embeddings(mmm):\n    mmm.return_embeddings = True\n    text = torch.randint(0, 10000, (1, 224))\n    img = torch.randn(1, 3, 224, 224)\n    out = mmm(text, img)\n    assert out.shape == (1, 224, 512)\n@pytest.mark.parametrize(\n    \"fusion_method\", [\"mlp\", \"concat\", \"add\", \"visual_expert\"]\n)\ndef test_mmm_forward_with_different_fusion_methods(\n    mmm, fusion_method\n):\n    mmm.fusion_method = fusion_method\n    text = torch.randint(0, 10000, (1, 224))\n    img = torch.randn(1, 3, 224, 224)\n    out = mmm(text, img)\n    assert out.shape == (1, 224, 10000)\n@pytest.mark.parametrize(\n    \"fusion_method\", [\"mlp\", \"concat\", \"add\", \"visual_expert\"]\n)\ndef test_mmm_forward_with_different_fusion_methods_2(\n    mmm, fusion_method\n):\n    mmm.fusion_method = fusion_method\n    text = torch.randint(0, 10000, (1, 224))\n    img = torch.randn(1, 3, 224, 224)\n    out = mmm(text, img)\n    assert (\n        out.shape == (1, 224, 10000)\n        if not mmm.return_embeddings\n        else (1, 224, 512)\n    )",
+        "type": "code",
+        "location": "/tests/test_model.py:49-84"
+    },
+    "171": {
+        "file_id": 22,
+        "content": "This code defines and tests a function `test_mmm_forward_with_different_fusion_methods_2` that checks the behavior of the MultiModalMamba model with various fusion methods, considering the `return_embeddings` flag. It initializes a Model instance, sets its `fusion_method`, generates random text and image tensors, calls the model's forward method, and asserts the output shape based on whether `return_embeddings` is True or False.",
+        "type": "comment"
+    }
+}

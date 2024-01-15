@@ -1,0 +1,20 @@
+{
+    "summary": "The code utilizes an OpenAI model to process class documentation and outputs it in a Markdown format, creates necessary directories, processes classes concurrently with threading, and prints generated documentation. It ensures proper execution when run directly by defining a main function and checking for script importation.",
+    "details": [
+        {
+            "comment": "This code processes the documentation for a given class using an OpenAI model, then saves it in a Markdown file. It first imports necessary modules and loads environment variables. The `process_documentation` function takes a class as input, gets its documentation and source code, creates an input string combining these, passes this to the OpenAI model for processing, and saves the processed content in a Markdown file.",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/scripts/auto_tests_docs/auto_docs.py\":0-40",
+            "content": "###### VERISON2\nimport inspect\nimport os\nimport threading\nfrom dotenv import load_dotenv\nfrom scripts.auto_tests_docs.docs import DOCUMENTATION_WRITER_SOP\nfrom swarms import OpenAIChat\n##########\nfrom zeta.nn.modules.quantized_layernorm import QuantizedLN\nfrom zeta.nn.modules.slerp_model_merger import SLERPModelMerger\nfrom zeta.nn.modules.avg_model_merger import AverageModelMerger\n####################\nload_dotenv()\napi_key = os.getenv(\"OPENAI_API_KEY\")\nmodel = OpenAIChat(\n    model_name=\"gpt-4\",\n    openai_api_key=api_key,\n    max_tokens=3000,\n)\ndef process_documentation(cls):\n    \"\"\"\n    Process the documentation for a given class using OpenAI model and save it in a Markdown file.\n    \"\"\"\n    doc = inspect.getdoc(cls)\n    source = inspect.getsource(cls)\n    input_content = (\n        \"Class Name:\"\n        f\" {cls.__name__}\\n\\nDocumentation:\\n{doc}\\n\\nSource\"\n        f\" Code:\\n{source}\"\n    )\n    # Process with OpenAI model (assuming the model's __call__ method takes this input and returns processed content)\n    processed_content = model("
+        },
+        {
+            "comment": "This code generates documentation for specified classes. It creates a directory if it doesn't exist, writes processed documentation to a Markdown file within the directory, and prints the generated documentation for each class. The code uses threading to process multiple classes concurrently.",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/scripts/auto_tests_docs/auto_docs.py\":41-79",
+            "content": "        DOCUMENTATION_WRITER_SOP(input_content, \"zeta.nn.modules\")\n    )\n    # doc_content = f\"# {cls.__name__}\\n\\n{processed_content}\\n\"\n    doc_content = f\"{processed_content}\\n\"\n    # Create the directory if it doesn't exist\n    dir_path = \"docs/zeta/nn/modules\"\n    os.makedirs(dir_path, exist_ok=True)\n    # Write the processed documentation to a Markdown file\n    file_path = os.path.join(dir_path, f\"{cls.__name__.lower()}.md\")\n    with open(file_path, \"w\") as file:\n        file.write(doc_content)\n    print(f\"Documentation generated for {cls.__name__}.\")\ndef main():\n    classes = [\n        QuantizedLN,\n        SLERPModelMerger,\n        AverageModelMerger,\n    ]\n    threads = []\n    for cls in classes:\n        thread = threading.Thread(\n            target=process_documentation, args=(cls,)\n        )\n        threads.append(thread)\n        thread.start()\n    # Wait for all threads to complete\n    for thread in threads:\n        thread.join()\n    print(\n        \"Documentation generated in 'docs/zeta/nn/modules' directory.\""
+        },
+        {
+            "comment": "The code is defining a main function and checking if the script is being run directly (not imported), then calling the main function if so.",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/scripts/auto_tests_docs/auto_docs.py\":80-84",
+            "content": "    )\nif __name__ == \"__main__\":\n    main()"
+        }
+    ]
+}
