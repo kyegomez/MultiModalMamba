@@ -18,6 +18,46 @@ This capability is particularly beneficial for tasks that involve substantial da
 
 ```python
 # Import the necessary libraries
+import torch 
+from torch import nn
+from mm_mamba import MultiModalMambaBlock
+
+# Create some random input tensors
+x = torch.randn(1, 16, 64)  # Tensor with shape (batch_size, sequence_length, feature_dim)
+y = torch.randn(1, 3, 64, 64)  # Tensor with shape (batch_size, num_channels, image_height, image_width)
+
+# Create an instance of the MultiModalMambaBlock model
+model = MultiModalMambaBlock(
+    dim = 64,  # Dimension of the token embeddings
+    depth = 5,  # Number of Mamba layers
+    dropout = 0.1,  # Dropout probability
+    heads = 4,  # Number of attention heads
+    d_state = 16,  # Dimension of the state embeddings
+    image_size = 64,  # Size of the input image
+    patch_size = 16,  # Size of each image patch
+    encoder_dim = 64,  # Dimension of the encoder token embeddings
+    encoder_depth = 5,  # Number of encoder transformer layers
+    encoder_heads = 4,  # Number of encoder attention heads
+    fusion_method="mlp",
+)
+
+# Pass the input tensors through the model
+out = model(x, y)
+
+# Print the shape of the output tensor
+print(out.shape)
+
+```
+
+
+### `MultiModalMamba`, Ready to Train Model
+- Flexibility in Data Types: The MultiModalMamba model can handle both text and image data simultaneously. This allows it to be trained on a wider variety of datasets and tasks, including those that require understanding of both text and image data.
+
+- Customizable Architecture: The MultiModalMamba model has numerous parameters such as depth, dropout, heads, d_state, image_size, patch_size, encoder_dim, encoder_depth, encoder_heads, and fusion_method. These parameters can be tuned according to the specific requirements of the task at hand, allowing for a high degree of customization in the model architecture.
+
+- Option to Return Embeddings: The MultiModalMamba model has a return_embeddings option. When set to True, the model will return the embeddings instead of the final output. This can be useful for tasks that require access to the intermediate representations learned by the model, such as transfer learning or feature extraction tasks.
+
+```python
 import torch  # Import the torch library
 
 # Import the MultiModalMamba model from the mm_mamba module
@@ -59,71 +99,6 @@ out = model(x, img, aud, vid)
 # Print the shape of the output tensor 'out'
 print(out.shape)
 
-
-# After much training
-
-model.eval()
-
-# Generate text
-model.generate(text)
-
-```
-
-
-### `MultiModalMamba`, Ready to Train Model
-- Flexibility in Data Types: The MultiModalMamba model can handle both text and image data simultaneously. This allows it to be trained on a wider variety of datasets and tasks, including those that require understanding of both text and image data.
-
-- Customizable Architecture: The MultiModalMamba model has numerous parameters such as depth, dropout, heads, d_state, image_size, patch_size, encoder_dim, encoder_depth, encoder_heads, and fusion_method. These parameters can be tuned according to the specific requirements of the task at hand, allowing for a high degree of customization in the model architecture.
-
-- Option to Return Embeddings: The MultiModalMamba model has a return_embeddings option. When set to True, the model will return the embeddings instead of the final output. This can be useful for tasks that require access to the intermediate representations learned by the model, such as transfer learning or feature extraction tasks.
-
-```python
-import torch  # Import the torch library
-
-# Import the MultiModalMamba model from the mm_mamba module
-from mm_mamba import MultiModalMamba
-
-# Generate a random tensor 'x' of size (1, 224) with random elements between 0 and 10000
-x = torch.randint(0, 10000, (1, 196))
-
-# Generate a random image tensor 'img' of size (1, 3, 224, 224)
-img = torch.randn(1, 3, 224, 224)
-
-# Create a MultiModalMamba model object with the following parameters:
-model = MultiModalMamba(
-    vocab_size=10000,
-    dim=512,
-    depth=6,
-    dropout=0.1,
-    heads=8,
-    d_state=512,
-    image_size=224,
-    patch_size=16,
-    encoder_dim=512,
-    encoder_depth=6,
-    encoder_heads=8,
-    fusion_method="mlp",
-    return_embeddings=False,
-    post_fuse_norm=True,
-)
-
-# Pass the tensor 'x' and 'img' through the model and store the output in 'out'
-out = model(x, img)
-
-# Print the shape of the output tensor 'out'
-print(out.shape)
-
-
-# After much training
-model.eval()
-
-# Tokenize texts
-text_tokens = tokenize(text)
-
-# Send text tokens to the model
-logits = model(text_tokens)
-
-text = detokenize(logits)
 ```
 
 # Real-World Deployment

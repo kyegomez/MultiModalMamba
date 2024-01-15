@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "mmm-zeta"
-version = "0.1.0"
+version = "0.1.1"
 description = "MultiModalMamba - Pytorch"
 license = "MIT"
 authors = ["Kye Gomez <kye@apac.ai>"]
