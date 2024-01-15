@@ -29,7 +29,7 @@ y = torch.randn(1, 3, 64, 64)  # Tensor with shape (batch_size, num_channels, im
 # Create an instance of the MultiModalMambaBlock model
 model = MultiModalMambaBlock(
     dim = 64,  # Dimension of the token embeddings
-    depth = 5,  # Number of transformer layers
+    depth = 5,  # Number of Mamba layers
     dropout = 0.1,  # Dropout probability
     heads = 4,  # Number of attention heads
     d_state = 16,  # Dimension of the state embeddings

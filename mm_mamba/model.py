@@ -26,7 +26,7 @@ class MMM(nn.Module):
         return_embeddings (bool): Whether to return the embeddings or not. Defaults to False.
         expansion_ratio (int): Expansion ratio for the hidden dimension. Defaults to 4.
         post_fuse_norm (bool): Whether to apply layer normalization after the fusion or not. Defaults to True.
-        
+
         *args: Variable length argument list.
         **kwargs: Arbitrary keyword arguments.
 
@@ -224,4 +224,3 @@ class MMM(nn.Module):
             logits = self.lm_head(x)
 
             return logits
-
