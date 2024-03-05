@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="github-markdown.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <title>Project structure of: kyegomez/MultiModalMamba</title>
+    <style>
+        .directory:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        :target {
+            background-color: yellow !important;
+        }
+
+        .folded::before {
+            content: '\25B6';
+            margin-right: 8px;
+            /* Add space between marker and text */
+        }
+
+        .expanded::before {
+            content: '\25BC';
+            margin-right: 8px;
+            /* Add space between marker and text */
+        }
+    </style>
+    <script>
+        function toggleVisibility(element) {
+            let mclass = element.getAttribute("class");
+            if (mclass == "expanded") {
+                element.setAttribute('class', 'folded');
+            } else {
+                element.setAttribute('class', 'expanded');
+            }
+            const siblings = element.parentNode.children;
+            for (const sibling of siblings) {
+                if (sibling !== element) {
+                    sibling.style.display = (sibling.style.display === 'none') ? 'block' : 'none';
+                }
+            }
+        }
+    </script>
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+
+            .partial-repository-url {
+                display: none;
+            }
+        }
+
+        ul {
+            list-style: none;
+        }
+        #feeling-lucky:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <article class="markdown-body">
+        <h2>Project structure<span hierarchy="0" class="partial-repository-url"> of: kyegomez/MultiModalMamba</span><div style="float: right;"><a title="Document index" style="margin:3.5px;" href="index.html"><i class="bi bi-search"></i></a><a title="Feeling lucky" style="margin:3.5px;" id="feeling-lucky" href="#"><i class="bi bi-dice-3"></i></a><a title="Expand tree" style="margin:3.5px;" href="tree.html?full=true" id="expand-tree"><i class="bi bi-caret-down-square"></i></a></div></h2>
+<ul>
+<li><span hierarchy="0" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/"><code>MultiModalMamba</code></strong> <em>Customizable Python AI automation and fusion</em></span><ul>
+<li><a class="file_link" href="index.html?q=/example.py" id="/example.py"><code>example&period;py</code></a> <em>Python script uses libraries, creates input tensors, initializes model, and prints shape.</em></li>
+<li><span hierarchy="1" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/mm_mamba/"><code>mm&UnderBar;mamba</code></strong> <em>Multi-modal fusion in PyTorch for diverse data.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/mm_mamba/__init__.py" id="/mm_mamba/__init__.py"><code>&UnderBar;&UnderBar;init&UnderBar;&UnderBar;&period;py</code></a> <em>Imports and lists MultiModalMambaBlock, MMM classes.</em></li>
+<li><a class="file_link" href="index.html?q=/mm_mamba/block.py" id="/mm_mamba/block.py"><code>block&period;py</code></a> <em>MultiModal Mamba Fusion in PyTorch</em></li>
+<li><a class="file_link" href="index.html?q=/mm_mamba/model.py" id="/mm_mamba/model.py"><code>model&period;py</code></a> <em>Multi-modal modeling with fusion techniques.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/model_example.py" id="/model_example.py"><code>model&UnderBar;example&period;py</code></a> <em>Imports torch, creates MMM model with parameters, passes x and img.</em></li>
+<li><a class="file_link" href="index.html?q=/pyproject.toml" id="/pyproject.toml"><code>pyproject&period;toml</code></a> <em>Configures Python project "mmm-zeta" with dependencies and dev tools.</em></li>
+<li><a class="file_link" href="index.html?q=/README.md" id="/README.md"><code>README&period;md</code></a> <em>Versatile AI model: Vision Transformer + Mamba, fast &amp; customizable.</em></li>
+<li><a class="file_link" href="index.html?q=/requirements.txt" id="/requirements.txt"><code>requirements&period;txt</code></a> <em>Specifies required Python package versions.</em></li>
+<li><span hierarchy="1" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/scripts/"><code>scripts</code></strong> <em>Automates Python testing, deployment, maintenance in '/scripts/'</em></span><ul>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/scripts/auto_tests_docs/"><code>auto&UnderBar;tests&UnderBar;docs</code></strong> <em>Automates Python testing and docs with GPT-4.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/scripts/auto_tests_docs/auto_docs.py" id="/scripts/auto_tests_docs/auto_docs.py"><code>auto&UnderBar;docs&period;py</code></a> <em>Auto-generates Markdown docs for classes using OpenAI model.</em></li>
+<li><a class="file_link" href="index.html?q=/scripts/auto_tests_docs/auto_docs_functions.py" id="/scripts/auto_tests_docs/auto_docs_functions.py"><code>auto&UnderBar;docs&UnderBar;functions&period;py</code></a> <em>Generate Markdown docs with OpenAI model for zeta.ops functions.</em></li>
+<li><a class="file_link" href="index.html?q=/scripts/auto_tests_docs/auto_tests.py" id="/scripts/auto_tests_docs/auto_tests.py"><code>auto&UnderBar;tests&period;py</code></a> <em>Automated test &amp; doc generation with GPT-4 in parallel threads.</em></li>
+<li><a class="file_link" href="index.html?q=/scripts/auto_tests_docs/auto_tests_functions.py" id="/scripts/auto_tests_docs/auto_tests_functions.py"><code>auto&UnderBar;tests&UnderBar;functions&period;py</code></a> <em>Automates documentation/testing for Python modules using gpt-4.</em></li>
+<li><a class="file_link" href="index.html?q=/scripts/auto_tests_docs/docs.py" id="/scripts/auto_tests_docs/docs.py"><code>docs&period;py</code></a> <em>Professional docs, markdown, multi-head attention, test best practices.</em></li>
+<li><a class="file_link" href="index.html?q=/scripts/auto_tests_docs/mkdocs_handler.py" id="/scripts/auto_tests_docs/mkdocs_handler.py"><code>mkdocs&UnderBar;handler&period;py</code></a> <em>Generate ".md" file list from directory.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/scripts/code_quality.sh" id="/scripts/code_quality.sh"><code>code&UnderBar;quality&period;sh</code></a> <em>Automates Python code style fixes and formatting in tests directory.</em></li>
+<li><a class="file_link" href="index.html?q=/scripts/delpycache.py" id="/scripts/delpycache.py"><code>delpycache&period;py</code></a> <em>Delete all <strong>pycache</strong> directories in specified directory.</em></li>
+<li><a class="file_link" href="index.html?q=/scripts/get_package_requirements.py" id="/scripts/get_package_requirements.py"><code>get&UnderBar;package&UnderBar;requirements&period;py</code></a> <em>Extracts package names and versions from requirements.txt for installation.</em></li>
+<li><a class="file_link" href="index.html?q=/scripts/requirementstxt_to_pyproject.py" id="/scripts/requirementstxt_to_pyproject.py"><code>requirementstxt&UnderBar;to&UnderBar;pyproject&period;py</code></a> <em>Automates pyproject.toml dependencies' version updates efficiently.</em></li>
+<li><a class="file_link" href="index.html?q=/scripts/test_name.sh" id="/scripts/test_name.sh"><code>test&UnderBar;name&period;sh</code></a> <em>Renames tests with 'test_' prefix, colored output.</em></li>
+<li><a class="file_link" href="index.html?q=/scripts/tests.sh" id="/scripts/tests.sh"><code>tests&period;sh</code></a> <em>Tests all Python scripts in directory.</em></li>
+</ul>
+</li>
+<li><span hierarchy="1" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/tests/"><code>tests</code></strong> <em>MultiModal MambaBlock tests with fusion and return_embeddings.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/tests/test_benchmarks.py" id="/tests/test_benchmarks.py"><code>test&UnderBar;benchmarks&period;py</code></a> <em>Benchmark MambaBlock and Transformer processing times</em></li>
+<li><a class="file_link" href="index.html?q=/tests/test_blocks.py" id="/tests/test_blocks.py"><code>test&UnderBar;blocks&period;py</code></a> <em>MultiModalMambaBlock test fixture tests.</em></li>
+<li><a class="file_link" href="index.html?q=/tests/test_model.py" id="/tests/test_model.py"><code>test&UnderBar;model&period;py</code></a> <em>MMM model test fixture with fusion methods and return_embeddings flag testing.</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+    </article>
+    <script type="text/javascript">
+        function getQueryParams() {
+            var search = window.location.search.substring(1); // Remove leading '?'
+            var queryParams = {};
+            search.split('&').forEach(function (pair) {
+                var parts = pair.split('=');
+                var key = decodeURIComponent(parts[0]);
+                var value = decodeURIComponent(parts[1]);
+                queryParams[key] = value;
+            });
+            return queryParams;
+        }
+
+        const queryParams = getQueryParams(window.location.search);
+        const show_full = queryParams.full == "true";
+        //const is_random = queryParams.random == 'true';
+        function feelingLucky() {
+            var elements = document.getElementsByClassName("file_link");
+            var randomIndex = Math.floor(Math.random() * elements.length);
+            window.location = elements[randomIndex].href;
+        }
+        //if (is_random) {feelingLucky();}
+        document.getElementById("feeling-lucky").onclick = feelingLucky;
+        if (!show_full) {
+            const spans = document.querySelectorAll('span');
+            for (let span of spans) {
+                if (span.getAttribute("hierarchy") == '0') { continue }
+                toggleVisibility(span);
+            }
+        } else {
+            const expand_elem = document.getElementById('expand-tree');
+            expand_elem.setAttribute("href", "tree.html");
+            expand_elem.setAttribute("title", "Undo expand");
+            expand_elem.innerHTML = '<i class="bi bi-caret-up-square"></i>'
+        }
+
+    </script>
+</body>
+
+</html>

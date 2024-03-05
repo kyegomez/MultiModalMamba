@@ -1,0 +1,10 @@
+{
+    "summary": "This code specifies the required package versions for torch, zetascale, and swarms in a Python project. The versions are 2.1.2 for torch, 1.4.0 for zetascale, and 3.4.2 for swarms.",
+    "details": [
+        {
+            "comment": "This code specifies the required package versions for torch, zetascale, and swarms in a Python project. The versions are 2.1.2 for torch, 1.4.0 for zetascale, and 3.4.2 for swarms.",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/requirements.txt\":0-2",
+            "content": "torch==2.1.2\nzetascale==1.4.0\nswarms==3.4.2"
+        }
+    ]
+}

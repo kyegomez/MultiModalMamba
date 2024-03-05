@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports the MultiModalMambaBlock and MMM classes from their respective modules, and adds them to the __all__ list for easy access.",
+    "details": [
+        {
+            "comment": "This code imports the MultiModalMambaBlock and MMM classes from their respective modules, and adds them to the __all__ list for easy access.",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/mm_mamba/__init__.py\":0-3",
+            "content": "from mm_mamba.block import MultiModalMambaBlock\nfrom mm_mamba.model import MMM\n__all__ = [\"MultiModalMambaBlock\", \"MMM\"]"
+        }
+    ]
+}

@@ -1,0 +1,3 @@
+torch==2.1.2
+zetascale==1.4.0
+swarms==3.4.2

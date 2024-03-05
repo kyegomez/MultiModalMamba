@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports the torch library, MMM model from mm_mamba module, generates random tensors x and img, creates a MMM object with specific parameters, passes x and img through the model and stores output in out, then prints out.",
+    "details": [
+        {
+            "comment": "This code imports the torch library, MMM model from mm_mamba module, generates random tensors x and img, creates a MMM object with specific parameters, passes x and img through the model and stores output in out, then prints out.",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/model_example.py\":0-33",
+            "content": "import torch  # Import the torch library\n# Import the MMM model from the mm_mamba module\nfrom mm_mamba import MMM\n# Generate a random tensor 'x' of size (1, 224) with random elements between 0 and 10000\nx = torch.randint(0, 10000, (1, 196))\n# Generate a random image tensor 'img' of size (1, 3, 224, 224)\nimg = torch.randn(1, 3, 224, 224)\n# Create a MMM model object with the following parameters:\nmodel = MMM(\n    vocab_size=10000,\n    dim=512,\n    depth=6,\n    dropout=0.1,\n    heads=8,\n    d_state=512,\n    image_size=224,\n    patch_size=16,\n    encoder_dim=512,\n    encoder_depth=6,\n    encoder_heads=8,\n    fusion_method=\"mlp\",\n    return_embeddings=False,\n    post_fuse_norm=True,\n)\n# Pass the tensor 'x' and 'img' through the model and store the output in 'out'\nout = model(x, img)\n# Print the shape of the output tensor 'out'\nprint(out.shape)"
+        }
+    ]
+}

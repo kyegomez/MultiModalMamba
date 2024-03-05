@@ -1,0 +1,10 @@
+{
+    "summary": "This code navigates to a code directory, applies autopep8 for aggressive code style fixes on Python files under 'tests', uses black for formatting, ruff for fixing issues, and YAPF for Google-style formatting in the 'tests' directory.",
+    "details": [
+        {
+            "comment": "This code navigates to a code directory, applies autopep8 for aggressive code style fixes on Python files under 'tests', uses black for formatting, ruff for fixing issues, and YAPF for Google-style formatting in the 'tests' directory.",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/scripts/code_quality.sh\":0-18",
+            "content": "#!/bin/bash\n# Navigate to the directory containing the 'tests' folder\n# cd /path/to/your/code/directory\n# Run autopep8 with max aggressiveness (-aaa) and in-place modification (-i)\n# on all Python files (*.py) under the 'tests' directory.\nautopep8 --in-place --aggressive --aggressive --recursive --experimental --list-fixes zeta/\n# Run black with default settings, since black does not have an aggressiveness level.\n# Black will format all Python files it finds in the 'tests' directory.\nblack --experimental-string-processing zeta/\n# Run ruff on the 'tests' directory.\n# Add any additional flags if needed according to your version of ruff.\nruff zeta/ --fix\n# YAPF\nyapf --recursive --in-place --verbose --style=google --parallel tests"
+        }
+    ]
+}

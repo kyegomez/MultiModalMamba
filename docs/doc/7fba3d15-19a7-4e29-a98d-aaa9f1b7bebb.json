@@ -1,0 +1,15 @@
+{
+    "summary": "The code imports libraries, creates input tensors, initializes a MultiModalMambaBlock model, passes tensors through the model, and prints the output tensor's shape.",
+    "details": [
+        {
+            "comment": "Code imports necessary libraries, creates random input tensors, initializes a MultiModalMambaBlock model with specified dimensions and parameters, passes the input tensors through the model, and prints the shape of the output tensor.",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/example.py\":0-30",
+            "content": "# Import the necessary libraries\nimport torch\nfrom mm_mamba import MultiModalMambaBlock\n# Create some random input tensors\nx = torch.randn(\n    1, 16, 64\n)  # Tensor with shape (batch_size, sequence_length, feature_dim)\ny = torch.randn(\n    1, 3, 64, 64\n)  # Tensor with shape (batch_size, num_channels, image_height, image_width)\n# Create an instance of the MultiModalMambaBlock model\nmodel = MultiModalMambaBlock(\n    dim=64,  # Dimension of the token embeddings\n    depth=5,  # Number of transformer layers\n    dropout=0.1,  # Dropout probability\n    heads=4,  # Number of attention heads\n    d_state=16,  # Dimension of the state embeddings\n    image_size=64,  # Size of the input image\n    patch_size=16,  # Size of each image patch\n    encoder_dim=64,  # Dimension of the encoder token embeddings\n    encoder_depth=5,  # Number of encoder transformer layers\n    encoder_heads=4,  # Number of encoder attention heads\n    fusion_method=\"mlp\",\n)\n# Pass the input tensors through the model\nout = model(x, y)\n# Print the shape of the output tensor"
+        },
+        {
+            "comment": "This line of code prints the shape (dimensions) of the variable 'out'.",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/example.py\":31-31",
+            "content": "print(out.shape)"
+        }
+    ]
+}

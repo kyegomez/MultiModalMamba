@@ -1,0 +1,15 @@
+{
+    "summary": "The `update_pyproject_versions()` function updates the \"pyproject.toml\" file's dependencies' versions, providing an efficient way to manage and modify its content.",
+    "details": [
+        {
+            "comment": "Function `update_pyproject_versions()` takes a `pyproject_path`, reads its TOML content, updates dependencies' versions if possible, and saves the updated file.",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/scripts/requirementstxt_to_pyproject.py\":0-35",
+            "content": "import toml\nimport pkg_resources\ndef update_pyproject_versions(pyproject_path):\n    try:\n        with open(pyproject_path, \"r\") as file:\n            data = toml.load(file)\n    except FileNotFoundError:\n        print(f\"Error: The file '{pyproject_path}' was not found.\")\n        return\n    except toml.TomlDecodeError:\n        print(\n            f\"Error: The file '{pyproject_path}' is not a valid TOML\"\n            \" file.\"\n        )\n        return\n    dependencies = (\n        data.get(\"tool\", {}).get(\"poetry\", {}).get(\"dependencies\", {})\n    )\n    for package in dependencies:\n        if package.lower() == \"python\":\n            continue  # Skip the Python version dependency\n        try:\n            version = pkg_resources.get_distribution(package).version\n            dependencies[package] = version\n        except pkg_resources.DistributionNotFound:\n            print(f\"Warning: Package '{package}' not installed.\")\n    with open(pyproject_path, \"w\") as file:\n        toml.dump(data, file)\n    print(f\"Updated versions written to {pyproject_path}\")"
+        },
+        {
+            "comment": "This code snippet provides an update function for the \"pyproject.toml\" file, allowing you to easily manage and update its content.",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/scripts/requirementstxt_to_pyproject.py\":38-39",
+            "content": "# Usage\nupdate_pyproject_versions(\"pyproject.toml\")"
+        }
+    ]
+}

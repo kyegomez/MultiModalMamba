@@ -1,0 +1,10 @@
+{
+    "summary": "This Python script deletes all __pycache__ directories in a specified directory. It uses os and shutil modules to walk through the directory, identify and remove the __pycache__ folders. Usage is specified as \"python delpycache.py <directory>\". If no argument is provided, it will print usage instructions and exit with an error code of 1. Once executed successfully, it will print a message confirming the deletion of __pycache__ directories in the specified directory.",
+    "details": [
+        {
+            "comment": "This Python script deletes all __pycache__ directories in a specified directory. It uses os and shutil modules to walk through the directory, identify and remove the __pycache__ folders. Usage is specified as \"python delpycache.py <directory>\". If no argument is provided, it will print usage instructions and exit with an error code of 1. Once executed successfully, it will print a message confirming the deletion of __pycache__ directories in the specified directory.",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/scripts/delpycache.py\":0-26",
+            "content": "\"\"\"\nDelete all __pycache__ directories in a given directory.\nUsage: python delpycache.py <directory>\n\"\"\"\nimport os\nimport shutil\nimport sys\ndef delete_pycache(directory):\n    \"\"\"\n    Delete all __pycache__ directories in a given directory.\n    \"\"\"\n    for root, dirs, files in os.walk(directory):\n        if \"__pycache__\" in dirs:\n            shutil.rmtree(os.path.join(root, \"__pycache__\"))\nif __name__ == \"__main__\":\n    if len(sys.argv) != 2:\n        print(\"Usage: python delete_pycache.py <directory>\")\n        sys.exit(1)\n    directory = sys.argv[1]\n    delete_pycache(directory)\n    print(f\"__pycache__ directories deleted in {directory}\")"
+        }
+    ]
+}

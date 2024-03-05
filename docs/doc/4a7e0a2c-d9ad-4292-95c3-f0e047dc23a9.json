@@ -1,0 +1,10 @@
+{
+    "summary": "Iterates through all Python files in the tests directory and renames them to start with 'test_' prefix, outputting a colored message for each renamed file.",
+    "details": [
+        {
+            "comment": "Iterates through all Python files in the tests directory and renames them to start with 'test_' prefix, outputting a colored message for each renamed file.",
+            "location": "\"/media/root/Prima/works/MultiModalMamba/docs/src/scripts/test_name.sh\":0-8",
+            "content": "find ./tests -name \"*.py\" -type f | while read file\ndo\n  filename=$(basename \"$file\")\n  dir=$(dirname \"$file\")\n  if [[ $filename != test_* ]]; then\n    mv \"$file\" \"$dir/test_$filename\"\n    printf \"\\e[1;34mRenamed: \\e[0m$file \\e[1;32mto\\e[0m $dir/test_$filename\\n\"\n  fi\ndone"
+        }
+    ]
+}
